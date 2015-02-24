@@ -339,6 +339,7 @@ public class KweekweekLoginTest extends BaseTest {
 		kweekweekHomepage.clickConfirmButtonOnConfirmationPopup();
 		Waits.waitForSomeSeconds(2000);
 		Assert.assertTrue(driver.getPageSource().contains("Logged in successfully"));
+		
 	}
 	
 	
