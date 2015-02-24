@@ -330,8 +330,7 @@ public class KweekweekLoginTest extends BaseTest {
 		Waits.waitForSomeSeconds(1000);
 		kweekweekHomepage.clickSignupButtonOnRegisterPopup();
 		kweekweekHomepage.closeConfirmPopup();
-		/*kweekweekHeader.clickSettingsButtonOnHeader();
-		kweekweekHeader.clickLogOut();*/
+		
 		kweekweekHeader.clickLoginButtonFromHeader();
 		kweekweekHomepage.setLoginUsername(email);
 		kweekweekHomepage.setLoginPassword("123123");
