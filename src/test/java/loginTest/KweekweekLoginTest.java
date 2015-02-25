@@ -329,13 +329,15 @@ public class KweekweekLoginTest extends BaseTest {
 		kweekweekHomepage.clickFirstNameField();
 		Waits.waitForSomeSeconds(1000);
 		kweekweekHomepage.clickSignupButtonOnRegisterPopup();
-		kweekweekHomepage.closeConfirmPopup();
-		
+		Waits.waitForSomeSeconds(2000);
+		kweekweekHomepage.closeConfirmPopup() ;
+		Waits.waitForSomeSeconds(1000);
 		kweekweekHeader.clickLoginButtonFromHeader();
 		kweekweekHomepage.setLoginUsername(email);
 		kweekweekHomepage.setLoginPassword("123123");
 		kweekweekHomepage.clickLoginButtonOnLoginPopup();
 		kweekweekHomepage.clickConfirmButtonOnConfirmationPopup();
+		Waits.waitForSomeSeconds(2000);
 		Assert.assertTrue(driver.getPageSource().contains("Logged in successfully"));
 	}
 	
