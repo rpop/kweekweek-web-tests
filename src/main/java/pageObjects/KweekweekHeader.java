@@ -36,7 +36,7 @@ public class KweekweekHeader {
 		private WebElement addEventButtonOnHeader;
 		@FindBy (xpath = "//a[@data-href='/users/sign_up']")
 		private WebElement signupButtonOnHeader;
-		@FindBy (xpath = "//a[class='vector icon-header_settings_yellow active']")
+		@FindBy (id = "settings-dropdown")
 		private WebElement settingsButtonOnheader;
 		@FindBy (xpath = "//a[@class='vector icon-settings_log_out']")
 		private WebElement logoutButton;

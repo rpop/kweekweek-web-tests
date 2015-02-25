@@ -341,7 +341,20 @@ public class KweekweekLoginTest extends BaseTest {
 		Assert.assertTrue(driver.getPageSource().contains("Logged in successfully"));
 	}
 	
-	
+	@Test
+	public void successfullyLogOut(){
+		KweekweekHomepage kweekweekHomepage = PageFactory.initElements(driver, KweekweekHomepage.class);
+		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
+		Waits.waitForSomeSeconds(1000);
+		kweekweekHeader.clickLoginButtonFromHeader();
+		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
+		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
+		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		//Waits.waitForSomeSeconds(2000);
+		kweekweekHeader.clickSettingsButtonOnHeader();
+		kweekweekHeader.clickLogOut();
+		Assert.assertTrue(driver.getPageSource().contains("Logged out successfully"));
+	}
 	
 
 	
