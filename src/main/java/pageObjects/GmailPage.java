@@ -12,7 +12,7 @@ import env.TestAppEnv;
 
 public class GmailPage {
 
-	WebDriver driver;
+	private WebDriver driver;
 	@FindBy (id="Email")
 	private WebElement gmailLoginEmailField;
 	@FindBy(id="Passwd")
@@ -27,6 +27,10 @@ public class GmailPage {
     private WebElement gmailDeleteMailButton;
     @FindBy (xpath="//div[@data-tooltip='Select']/div/span[@role='checkbox']")
     private WebElement mailCheckbox;
+    @FindBy(xpath="//span[contains(.,'Unlock your KweekWeek account')]")
+	private WebElement unlockAccountEmail;
+    @FindBy(xpath="//a[contains(.,'Unlock my account')]")
+	private WebElement unlockAccountLink;
 	
 	
 	
@@ -38,60 +42,56 @@ public class GmailPage {
 		driver.get(TestAppEnv.getGmailLoginPage());
 	}
 	public void setGmailLoginEmail(String email){
-		Waits.waitForVisibilityOfElement(driver, gmailLoginEmailField);
+		Waits.waitForElementToBeClickable(driver, gmailLoginEmailField);
 		gmailLoginEmailField.clear();
 		gmailLoginEmailField.sendKeys(email);
 	}
 	public void setGmailLoginPassword(String password){
-		Waits.waitForVisibilityOfElement(driver, gmailLoginPasswordField);
+		Waits.waitForElementToBeClickable(driver, gmailLoginPasswordField);
 		gmailLoginPasswordField.clear();
         gmailLoginPasswordField.sendKeys(password);
 	}
 	
 	public void clickGmailSigninButton(){
-		Waits.waitForVisibilityOfElement(driver, gmailSigninButton);
+		Waits.waitForElementToBeClickable(driver, gmailSigninButton);
 		gmailSigninButton.click();
 	}
 	
 	public void clickGmailResetPasswordEmail(){
-		Waits.waitForVisibilityOfElement(driver, resetPasswordEmail);
+		Waits.waitForElementToBeClickable(driver, resetPasswordEmail);
 		resetPasswordEmail.click();
 	}
 	
 	public void clickGmailResetPasswordButton(){
-		Waits.waitForVisibilityOfElement(driver, resetPasswordButton);
+		Waits.waitForElementToBeClickable(driver, resetPasswordButton);
 		resetPasswordButton.click();
 	}
 	
 	public void deleteResetPasswordEmail(){
-		Waits.waitForVisibilityOfElement(driver, gmailDeleteMailButton);
+		Waits.waitForElementToBeClickable(driver, gmailDeleteMailButton);
 		gmailDeleteMailButton.click();
 	}
 	public void loginToGmail(String email, String password){
-		Waits.waitForVisibilityOfElement(driver, gmailLoginEmailField);
+		Waits.waitForElementToBeClickable(driver, gmailLoginEmailField);
 		setGmailLoginEmail(email);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Waits.waitForSomeSeconds(2000);
 		setGmailLoginPassword(password);
 		clickGmailSigninButton();
 		
 	}
 	
 	public void clickMailCheckbox(){
-		Waits.waitForVisibilityOfElement(driver, mailCheckbox);
+		Waits.waitForElementToBeClickable(driver, mailCheckbox);
 		mailCheckbox.click();
 	}
 	
 	public void clickDeleteAllButtonInHeader(){
-		Waits.waitForVisibilityOfElement(driver, gmailDeleteMailButton);
+		Waits.waitForElementToBeClickable(driver, gmailDeleteMailButton);
 		gmailDeleteMailButton.click();
 	}
 	
 	public void clickResetLink(){
-		Waits.waitForVisibilityOfElement(driver, resetPasswordEmail);
+		Waits.waitForElementToBeClickable(driver, resetPasswordEmail);
 		clickGmailResetPasswordButton();
 		clickGmailResetPasswordButton();
 	}
@@ -100,6 +100,18 @@ public class GmailPage {
 		clickMailCheckbox();
 	    clickDeleteAllButtonInHeader();
 	    
+	}
+
+	public void clickGmailUnlockEmail() {
+		Waits.waitForElementToBeClickable(driver, unlockAccountEmail);
+	   unlockAccountEmail.click();
+		
+	}
+
+	public void clickUnlockAccountLinkInMail() {
+		Waits.waitForElementToBeClickable(driver, unlockAccountLink );
+	   unlockAccountLink.click();
+		
 	}
 	
 	

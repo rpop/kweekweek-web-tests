@@ -8,20 +8,28 @@ import java.util.Random;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import env.TestAppEnv;
 
 
 
 import pageObjects.FacebookPage;
 import pageObjects.GmailPage;
+import pageObjects.KweekweekBrowsePage;
 import pageObjects.KweekweekEventPage;
 import pageObjects.KweekweekHeader;
 import pageObjects.KweekweekHomepage;
 import testData.Users;
 import utils.Iterations;
+import utils.UtilityActions;
 import utils.RandomStrings;
 import utils.Waits;
 
@@ -184,7 +192,11 @@ public class KweekweekLoginTest extends BaseTest {
 		KweekweekHomepage kweekweekHomepage = PageFactory.initElements(driver, KweekweekHomepage.class);
 		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver,KweekweekHeader.class);
 		KweekweekEventPage kweekweekEventPage = PageFactory.initElements(driver, KweekweekEventPage.class);
-		kweekweekHomepage.clickEventModule();
+		KweekweekBrowsePage kweekweekBrowsePage = PageFactory.initElements(driver,KweekweekBrowsePage.class);
+		//Waits.waitForSomeSeconds(500);
+		//UtilityActions.scrollWithJsExecutor(driver, driver.findElement(By.xpath("//a[@class='boxLink']")));
+		driver.get(TestAppEnv.getUrl() + "/discover/all-categories/events");
+		kweekweekBrowsePage.clickEventOnBrowsePage();
 		kweekweekEventPage.clickBookNowButtonOnEventPage();
 		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
 		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
@@ -196,8 +208,9 @@ public class KweekweekLoginTest extends BaseTest {
 	@Test
 	public void loginBeforeWishlistOnBrowse(){
 		KweekweekHomepage kweekweekHomepage = PageFactory.initElements(driver, KweekweekHomepage.class);
-		driver.get("http://staging.kweekweek.com/discover/all-categories/events");
-		kweekweekHomepage.hoverOverPoster();
+		KweekweekBrowsePage kweekweekBrowsePage = PageFactory.initElements(driver, KweekweekBrowsePage.class);
+		driver.get(TestAppEnv.getUrl() + "/discover/all-categories/events");
+		kweekweekBrowsePage.hoverOverPosterOnBrowsePage();
 		kweekweekHomepage.clickWishlistButtonOnModule();
 		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
 		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
@@ -211,7 +224,9 @@ public class KweekweekLoginTest extends BaseTest {
 	public void loginBeforeWishlistOnEventPage(){
 		KweekweekHomepage kweekweekHomepage = PageFactory.initElements(driver, KweekweekHomepage.class);
 		KweekweekEventPage kweekweekEventPage = PageFactory.initElements(driver, KweekweekEventPage.class);
-		kweekweekHomepage.clickEventModule();
+		KweekweekBrowsePage kweekweekBrowsePage = PageFactory.initElements(driver, KweekweekBrowsePage.class);
+		driver.get(TestAppEnv.getUrl() + "/discover/all-categories/events");
+		kweekweekBrowsePage.clickEventOnBrowsePage();
 		kweekweekEventPage.clickWishlistButtonOnEventPage();
 		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
 		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
@@ -350,10 +365,38 @@ public class KweekweekLoginTest extends BaseTest {
 		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
 		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
 		kweekweekHomepage.clickLoginButtonOnLoginPopup();
-		//Waits.waitForSomeSeconds(2000);
+		Waits.waitForSomeSeconds(2000);
 		kweekweekHeader.clickSettingsButtonOnHeader();
 		kweekweekHeader.clickLogOut();
 		Assert.assertTrue(driver.getPageSource().contains("Logged out successfully"));
+	}
+	
+	@Test 
+	public void unlockAccountFromUnlockMail(){
+		KweekweekHomepage kweekweekHomepage = PageFactory.initElements(driver, KweekweekHomepage.class);
+		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
+		GmailPage gmailPage = PageFactory.initElements(driver, GmailPage.class);
+		Waits.waitForSomeSeconds(1000);
+		kweekweekHeader.clickLoginButtonFromHeader();
+		for (int i = 0; i < 12; i++) {
+				//Waits.waitForSomeSeconds(500);
+				kweekweekHomepage.setLoginUsername(Users.LOCKEDUSER);
+				//Waits.waitForSomeSeconds(500);
+				kweekweekHomepage.setLoginPassword("randomshitsdgsds");
+				//Waits.waitForSomeSeconds(500);
+				kweekweekHomepage.clickLoginButtonOnLoginPopup();
+				Waits.waitForSomeSeconds(500);
+		}
+		gmailPage.getGmailLoginPage();
+		gmailPage.loginToGmail("sanityautotest@gmail.com", "Pitech01");
+		gmailPage.clickGmailUnlockEmail();
+		gmailPage.clickUnlockAccountLinkInMail();
+		Iterations.moveToNextWindow(driver);
+		kweekweekHomepage.setLoginUsername(Users.LOCKEDUSER);
+		kweekweekHomepage.setLoginPassword(Users.LOCKEDPASS);
+		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		
+		
 	}
 	
 

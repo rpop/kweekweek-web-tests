@@ -8,7 +8,7 @@ import utils.Waits;
 
 public class FacebookPage {
 
-	WebDriver driver;
+	private WebDriver driver;
 	@FindBy (id="email")
 	private WebElement facebookLoginEmailField;
 	@FindBy(id="pass")
@@ -21,29 +21,29 @@ public class FacebookPage {
 	}
 	
 	public void clickFacebookEmailField(){
-		Waits.waitForVisibilityOfElement(driver, facebookLoginEmailField);
+		Waits.waitForElementToBeClickable(driver, facebookLoginEmailField);
 	    facebookLoginEmailField.click();
 	}
 	
 	public void setFacebookLoginEmail(String facebookLoginEmail){
-		Waits.waitForVisibilityOfElement(driver, facebookLoginEmailField);
+		Waits.waitForElementToBeClickable(driver, facebookLoginEmailField);
 		facebookLoginEmailField.clear();
 		facebookLoginEmailField.sendKeys(facebookLoginEmail);
 	}
 	
 	public void clickFacebookPasswordField(){
-		Waits.waitForVisibilityOfElement(driver, facebookLoginPasswordField);
+		Waits.waitForElementToBeClickable(driver, facebookLoginPasswordField);
 		facebookLoginPasswordField.click();
 	}
 	
 	public void setFacebookLoginPassword(String facebookLoginPassword){
-		Waits.waitForVisibilityOfElement(driver, facebookLoginEmailField);
+		Waits.waitForElementToBeClickable(driver, facebookLoginEmailField);
 		facebookLoginPasswordField.clear();
 		facebookLoginPasswordField.sendKeys(facebookLoginPassword);
 	}
 	
 	public void clickFacebookLoginButton(){
-		Waits.waitForVisibilityOfElement(driver, facebookLoginButton);
+		Waits.waitForElementToBeClickable(driver, facebookLoginButton);
 		facebookLoginButton.click();
 	}
 

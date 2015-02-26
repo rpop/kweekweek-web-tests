@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -30,11 +31,13 @@ public class BaseTest {
     @BeforeMethod
     public void setup(){
     	
-    	Properties.setProperty();
-		driver = new ChromeDriver();
+    	/*Properties.setProperty();
+		driver = new ChromeDriver();*/
+		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
 		driver.get(TestAppEnv.getUrl());
 		driver.navigate().refresh();
+    	
     }
     
     
