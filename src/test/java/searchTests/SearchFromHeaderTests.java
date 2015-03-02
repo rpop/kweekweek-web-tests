@@ -48,7 +48,7 @@ public class SearchFromHeaderTests extends BaseTest{
 		List<String> categories = kweekweekHeader.getListOfCategories();
 		for (String category : categories){
 			kweekweekHeader.clickCategoriesButton();
-			String selectedCategory = kweekweekHeader.getSelectedCategory(category);
+			//String selectedCategory = kweekweekHeader.getSelectedCategory(category);
 			Waits.waitForSomeSeconds(3000);
 			kweekweekHeader.selectOptionFromCategoriesList(category);
 			kweekweekHeader.addSelectedCategoryToList(category);

@@ -109,7 +109,7 @@ public class KweekweekHeader {
 		public void selectOptionFromCategoriesList(String category){
 			Waits.waitForElementToBeClickable(driver, driver.findElement(By.xpath("//li[@class='" + category + "']")));
 			driver.findElement(By.xpath("//li[@class='" + category + "']")).click();
-			System.out.println(driver.findElement(By.xpath("//li[@class='" + category + "']")).getText());
+			//System.out.println(driver.findElement(By.xpath("//li[@class='" + category + "']")).getText());
 			
 		}
 		public void clickCategoriesButton(){
