@@ -40,8 +40,8 @@ public class KweekweekLoginTest extends BaseTest {
 	 	
 	@Test(enabled=true)
 	public void openLoginPopupFromHeader(){
-		KweekweekHeader kweekweekHeader = new PageFactory().initElements(driver, KweekweekHeader.class);
-		KweekweekHomepage kweekweekHomepage = new PageFactory().initElements(driver, KweekweekHomepage.class);
+		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
+		KweekweekHomepage kweekweekHomepage = PageFactory.initElements(driver, KweekweekHomepage.class);
 		Waits.waitForSomeSeconds(2000);
 		kweekweekHeader.clickLoginButtonFromHeader();
 		Waits.waitForVisibilityOfElement(driver, kweekweekHomepage.loginPasswordField);
@@ -51,14 +51,14 @@ public class KweekweekLoginTest extends BaseTest {
 	@Test 
 	public void successfulLoginWithEmailWithRedirectToDashboard() {
 		KweekweekHomepage kweekweekHomepage = PageFactory.initElements(driver, KweekweekHomepage.class);
-		KweekweekHeader kweekweekHeader = new PageFactory().initElements(driver, KweekweekHeader.class);
+		KweekweekHeader kweekweekHeader =  PageFactory.initElements(driver, KweekweekHeader.class);
 		Waits.waitForSomeSeconds(2000);
 		kweekweekHeader.clickLoginButtonFromHeader();
-		kweekweekHomepage.clickUsernameField();
-		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
-		kweekweekHomepage.clickPasswordField();
-		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
-	    kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.clickUsernameField()
+						 .setLoginUsername(Users.getNormalUser())
+						 .clickPasswordField()
+						 .setLoginPassword(Users.getNormalPassword())
+						 .clickLoginButtonOnLoginPopup();
 	    Waits.waitForVisibilityOfElement(driver, kweekweekHomepage.alertContainer);
 	    Waits.waitForSomeSeconds(3000);
 	    Assert.assertTrue(driver.getPageSource().contains("Logged in successfully")&& driver.getCurrentUrl().contains("dashboard#discover"));
@@ -69,10 +69,10 @@ public class KweekweekLoginTest extends BaseTest {
 		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
 		Waits.waitForSomeSeconds(2000);
 		kweekweekHeader.clickLoginButtonFromHeader();
-		kweekweekHomepage.clickUsernameField();
-		kweekweekHomepage.setLoginUsername("all4winning");
-		kweekweekHomepage.setLoginPassword("incorrectPassword");
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.clickUsernameField()
+		                 .setLoginUsername("all4winning")
+						 .setLoginPassword("incorrectPassword")
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForVisibilityOfElement(driver, kweekweekHomepage.errorAlert);
 		Assert.assertTrue(driver.getPageSource().contains("Invalid email, username or password. Please try again"));
 	}
@@ -83,9 +83,9 @@ public class KweekweekLoginTest extends BaseTest {
 		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
 		Waits.waitForSomeSeconds(2000);
 		kweekweekHeader.clickLoginButtonFromHeader();
-		kweekweekHomepage.clickUsernameField();
-		kweekweekHomepage.setLoginUsername("all4winning");
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.clickUsernameField()
+						 .setLoginUsername("all4winning")
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForVisibilityOfElement(driver, kweekweekHomepage.errorAlert);
 		Assert.assertTrue(driver.getPageSource().contains("Invalid email, username or password. Please try again"));
 	}
@@ -95,10 +95,10 @@ public class KweekweekLoginTest extends BaseTest {
 		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
 		Waits.waitForSomeSeconds(2000);
 		kweekweekHeader.clickLoginButtonFromHeader();
-		kweekweekHomepage.clickUsernameField();
-		kweekweekHomepage.setLoginUsername("");
-		kweekweekHomepage.setLoginPassword("12341234");
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.clickUsernameField()
+						 .setLoginUsername("")
+						 .setLoginPassword("12341234")
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForVisibilityOfElement(driver, kweekweekHomepage.errorAlert);
 		Assert.assertTrue(driver.getPageSource().contains("Invalid email, username or password. Please try again"));
 		
@@ -123,10 +123,10 @@ public class KweekweekLoginTest extends BaseTest {
 		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
 		Waits.waitForSomeSeconds(2000);
 		kweekweekHeader.clickLoginButtonFromHeader();
-		kweekweekHomepage.clickUsernameField();
-		kweekweekHomepage.setLoginUsername("incorrectUsername");
-		kweekweekHomepage.setLoginPassword("incorrectPassword");
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.clickUsernameField()
+						 .setLoginUsername("incorrectUsername")
+						 .setLoginPassword("incorrectPassword")
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForVisibilityOfElement(driver, kweekweekHomepage.errorAlert);
 		Assert.assertTrue(driver.getPageSource().contains("Invalid email, username or password. Please try again"));
 		
@@ -140,9 +140,9 @@ public class KweekweekLoginTest extends BaseTest {
 		Waits.waitForSomeSeconds(2000);
 		kweekweekHeader.clickLoginButtonFromHeader();
 		kweekweekHomepage.clickLoginWithFacebook();
-	    facebookPage.setFacebookLoginEmail(Users.getFacebookUser());
-	    facebookPage.setFacebookLoginPassword(Users.getFacebookPassword());
-	    facebookPage.clickFacebookLoginButton();
+	    facebookPage.setFacebookLoginEmail(Users.getFacebookUser())
+	    			.setFacebookLoginPassword(Users.getFacebookPassword())
+	    			.clickFacebookLoginButton();
 	    Waits.waitForVisibilityOfElement(driver, kweekweekHomepage.alertContainer);
 	    Assert.assertTrue(driver.getPageSource().contains("Logged in successfully"));
 	}
@@ -172,17 +172,17 @@ public class KweekweekLoginTest extends BaseTest {
 		GmailPage gmailPage = PageFactory.initElements(driver, GmailPage.class);
 		Waits.waitForSomeSeconds(2000);
 		kweekweekHeader.clickLoginButtonFromHeader();
-		kweekweekHomepage.clickForgotPasswordLink();
-		kweekweekHomepage.enterEmailResetPassword("sanityautotest@gmail.com");
-		kweekweekHomepage.clickResetPasswordSubmitButton();
-		gmailPage.getGmailLoginPage();
-		gmailPage.loginToGmail("sanityautotest@gmail.com", "Pitech01");
-		gmailPage.clickGmailResetPasswordEmail();
-		gmailPage.clickGmailResetPasswordButton();
+		kweekweekHomepage.clickForgotPasswordLink()
+						 .enterEmailResetPassword("sanityautotest@gmail.com")
+						 .clickResetPasswordSubmitButton();
+		gmailPage.getGmailLoginPage()
+				 .loginToGmail("sanityautotest@gmail.com", "Pitech01")
+			     .clickGmailResetPasswordEmail()
+			     .clickGmailResetPasswordButton();
 		Iterations.moveToNextWindow(driver);
-		kweekweekHomepage.setNewPassword("123123");
-		kweekweekHomepage.setNewPasswordConfirmation("123123");
-		kweekweekHomepage.clickChangePassword();
+		kweekweekHomepage.setNewPassword("123123")
+						 .setNewPasswordConfirmation("123123")
+						 .clickChangePassword();
 		Waits.waitForSomeSeconds(2000);
 		Assert.assertTrue(driver.getPageSource().contains("Password changed successfully. You are now logged in"));
 		
@@ -199,9 +199,9 @@ public class KweekweekLoginTest extends BaseTest {
 		driver.get(TestAppEnv.getUrl() + "/discover/all-categories/events");
 		kweekweekBrowsePage.clickEventOnBrowsePage();
 		kweekweekEventPage.clickBookNowButtonOnEventPage();
-		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
-		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.setLoginUsername(Users.getNormalUser())
+						 .setLoginPassword(Users.getNormalPassword())
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForSomeSeconds(1000);
 		Assert.assertTrue(driver.getPageSource().contains("Logged in successfully")&& driver.findElement(By.xpath("//h3[@class='modal-title']")).getText().contains("Book tickets"));
 	}
@@ -212,10 +212,10 @@ public class KweekweekLoginTest extends BaseTest {
 		KweekweekBrowsePage kweekweekBrowsePage = PageFactory.initElements(driver, KweekweekBrowsePage.class);
 		driver.get(TestAppEnv.getUrl() + "/discover/all-categories/events");
 		kweekweekBrowsePage.hoverOverPosterOnBrowsePage();
-		kweekweekHomepage.clickWishlistButtonOnModule();
-		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
-		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.clickWishlistButtonOnModule()
+						 .setLoginUsername(Users.getNormalUser())
+						 .setLoginPassword(Users.getNormalPassword())
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForSomeSeconds(1000);
 		Assert.assertTrue(driver.getPageSource().contains("Logged in successfully")&& driver.getCurrentUrl().contains("staging.kweekweek.com/discover/all-categories/events"));
 		
@@ -229,9 +229,9 @@ public class KweekweekLoginTest extends BaseTest {
 		driver.get(TestAppEnv.getUrl() + "/discover/all-categories/events");
 		kweekweekBrowsePage.clickEventOnBrowsePage();
 		kweekweekEventPage.clickWishlistButtonOnEventPage();
-		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
-		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.setLoginUsername(Users.getNormalUser())
+						 .setLoginPassword(Users.getNormalPassword())
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForSomeSeconds(1000);
 		Assert.assertTrue(driver.getPageSource().contains("Logged in successfully")&& driver.getPageSource().contains("Wishlist"));
 					
@@ -243,9 +243,9 @@ public class KweekweekLoginTest extends BaseTest {
 		KweekweekEventPage kweekweekEventPage = PageFactory.initElements(driver, KweekweekEventPage.class);
 		kweekweekHomepage.clickEventModule();
 		kweekweekEventPage.clickAttendeesHeader();
-		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
-		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.setLoginUsername(Users.getNormalUser())
+						 .setLoginPassword(Users.getNormalPassword())
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForSomeSeconds(3000);
 		Assert.assertTrue(driver.findElement(By.xpath("//h3[@class='modal-title']")).getText().contains("Attendees"));
 			
@@ -257,9 +257,9 @@ public class KweekweekLoginTest extends BaseTest {
 		KweekweekEventPage kweekweekEventPage = PageFactory.initElements(driver, KweekweekEventPage.class);
 		kweekweekHomepage.clickEventModule();
 		kweekweekEventPage.clickFollowersOnEventPage();
-		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
-		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.setLoginUsername(Users.getNormalUser())
+						 .setLoginPassword(Users.getNormalPassword())
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForVisibilityOfElement(driver, driver.findElement(By.xpath("//h3[@class='modal-title']")));
 		Waits.waitForSomeSeconds(2000);
 		Assert.assertTrue(driver.findElement(By.xpath("//h3[@class='modal-title']")).getText().contains("Followers"));
@@ -271,9 +271,9 @@ public class KweekweekLoginTest extends BaseTest {
 		KweekweekEventPage kweekweekEventPage = PageFactory.initElements(driver, KweekweekEventPage.class);
 		kweekweekHomepage.clickEventModule();
 		kweekweekEventPage.clickContactHost();
-		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
-		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.setLoginUsername(Users.getNormalUser())
+						 .setLoginPassword(Users.getNormalPassword())
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForVisibilityOfElement(driver, driver.findElement(By.xpath("//h3[@class='modal-title']")));
 		Waits.waitForSomeSeconds(2000);
 		Assert.assertTrue(driver.findElement(By.xpath("//h3[@class='modal-title']")).getText().contains("Contact host"));
@@ -286,9 +286,9 @@ public class KweekweekLoginTest extends BaseTest {
 		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
 		Waits.waitForSomeSeconds(2000);
 		kweekweekHeader.clickAddEventButton();
-		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
-		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.setLoginUsername(Users.getNormalUser())
+						 .setLoginPassword(Users.getNormalPassword())
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForSomeSeconds(3000);
 		Waits.waitForVisibilityOfElement(driver, driver.findElement(By.xpath("//div[@class='action-buttons']")));
 		Assert.assertTrue(driver.getPageSource().contains("Logged in successfully")&& driver.findElement(By.xpath("//div[@class='page-title']")).getText().contains("Create an event in")); 
@@ -302,9 +302,9 @@ public class KweekweekLoginTest extends BaseTest {
 		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
 		kweekweekHomepage.clickEventModule();
 		kweekweekHeader.clickLoginButtonFromHeader();
-		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
-		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.setLoginUsername(Users.getNormalUser())
+						 .setLoginPassword(Users.getNormalPassword())
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForSomeSeconds(2000);
 		Waits.waitForVisibilityOfElement(driver, driver.findElement(By.xpath("//div[@class='title']")));
 		Assert.assertTrue(driver.getPageSource().contains("Logged in successfully")&& driver.getPageSource().contains("Hosted by"));
@@ -319,9 +319,9 @@ public class KweekweekLoginTest extends BaseTest {
 		kweekweekEventPage.clickOnHost();
 		Waits.waitForSomeSeconds(1000);
 		kweekweekHeader.clickLoginButtonFromHeader();
-		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
-		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.setLoginUsername(Users.getNormalUser())
+						 .setLoginPassword(Users.getNormalPassword())
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForSomeSeconds(2000);
 		Waits.waitForVisibilityOfElement(driver, driver.findElement(By.xpath("//div[@class='js-contact-host']")));
 		Assert.assertTrue(driver.getPageSource().contains("Logged in successfully")&& driver.getPageSource().contains("Host information"));
@@ -337,22 +337,22 @@ public class KweekweekLoginTest extends BaseTest {
 		kweekweekHomepage.setFirstName("name");
 		kweekweekHomepage.setLastName("last");
 		String email = RandomStrings.generateRandomString(20);
-		kweekweekHomepage.setEmailOnSignup(email);
-		kweekweekHomepage.selectGender();
-		kweekweekHomepage.selectDob("02/05/2014");
-		kweekweekHomepage.setPasswordOnSignupPopup("123123");
-		kweekweekHomepage.setConfirmPassword("123123");
-		kweekweekHomepage.clickFirstNameField();
+		kweekweekHomepage.setEmailOnSignup(email)
+						 .selectGender()
+						 .selectDob("02/05/2014")
+						 .setPasswordOnSignupPopup("123123")
+						 .setConfirmPassword("123123")
+						 .clickFirstNameField();
 		Waits.waitForSomeSeconds(1000);
 		kweekweekHomepage.clickSignupButtonOnRegisterPopup();
 		Waits.waitForSomeSeconds(2000);
 		kweekweekHomepage.closeConfirmPopup() ;
 		Waits.waitForSomeSeconds(1000);
 		kweekweekHeader.clickLoginButtonFromHeader();
-		kweekweekHomepage.setLoginUsername(email);
-		kweekweekHomepage.setLoginPassword("123123");
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
-		kweekweekHomepage.clickConfirmButtonOnConfirmationPopup();
+		kweekweekHomepage.setLoginUsername(email)
+						 .setLoginPassword("123123")
+						 .clickLoginButtonOnLoginPopup()
+						 .clickConfirmButtonOnConfirmationPopup();
 		Waits.waitForSomeSeconds(2000);
 		Assert.assertTrue(driver.getPageSource().contains("Logged in successfully"));
 	}
@@ -363,9 +363,9 @@ public class KweekweekLoginTest extends BaseTest {
 		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
 		Waits.waitForSomeSeconds(1000);
 		kweekweekHeader.clickLoginButtonFromHeader();
-		kweekweekHomepage.setLoginUsername(Users.getNormalUser());
-		kweekweekHomepage.setLoginPassword(Users.getNormalPassword());
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.setLoginUsername(Users.getNormalUser())
+						 .setLoginPassword(Users.getNormalPassword())
+						 .clickLoginButtonOnLoginPopup();
 		Waits.waitForSomeSeconds(2000);
 		kweekweekHeader.clickSettingsButtonOnHeader();
 		kweekweekHeader.clickLogOut();
@@ -388,14 +388,14 @@ public class KweekweekLoginTest extends BaseTest {
 				kweekweekHomepage.clickLoginButtonOnLoginPopup();
 				Waits.waitForSomeSeconds(500);
 		}
-		gmailPage.getGmailLoginPage();
-		gmailPage.loginToGmail("sanityautotest@gmail.com", "Pitech01");
-		gmailPage.clickGmailUnlockEmail();
-		gmailPage.clickUnlockAccountLinkInMail();
+		gmailPage.getGmailLoginPage()
+				 .loginToGmail("sanityautotest@gmail.com", "Pitech01")
+				 .clickGmailUnlockEmail()
+				 .clickUnlockAccountLinkInMail();
 		Iterations.moveToNextWindow(driver);
-		kweekweekHomepage.setLoginUsername(Users.LOCKEDUSER);
-		kweekweekHomepage.setLoginPassword(Users.LOCKEDPASS);
-		kweekweekHomepage.clickLoginButtonOnLoginPopup();
+		kweekweekHomepage.setLoginUsername(Users.LOCKEDUSER)
+						 .setLoginPassword(Users.LOCKEDPASS)
+						 .clickLoginButtonOnLoginPopup();
 		
 		
 	}

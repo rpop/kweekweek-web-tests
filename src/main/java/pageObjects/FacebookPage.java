@@ -20,31 +20,36 @@ public class FacebookPage {
 		this.driver = driver;
 	}
 	
-	public void clickFacebookEmailField(){
+	public FacebookPage clickFacebookEmailField(){
 		Waits.waitForElementToBeClickable(driver, facebookLoginEmailField);
 	    facebookLoginEmailField.click();
+	    return this;
 	}
 	
-	public void setFacebookLoginEmail(String facebookLoginEmail){
+	public FacebookPage setFacebookLoginEmail(String facebookLoginEmail){
 		Waits.waitForElementToBeClickable(driver, facebookLoginEmailField);
 		facebookLoginEmailField.clear();
 		facebookLoginEmailField.sendKeys(facebookLoginEmail);
+		return this;
 	}
 	
-	public void clickFacebookPasswordField(){
+	public FacebookPage clickFacebookPasswordField(){
 		Waits.waitForElementToBeClickable(driver, facebookLoginPasswordField);
 		facebookLoginPasswordField.click();
+		return this;
 	}
 	
-	public void setFacebookLoginPassword(String facebookLoginPassword){
+	public FacebookPage setFacebookLoginPassword(String facebookLoginPassword){
 		Waits.waitForElementToBeClickable(driver, facebookLoginEmailField);
 		facebookLoginPasswordField.clear();
 		facebookLoginPasswordField.sendKeys(facebookLoginPassword);
+		return this;
 	}
 	
-	public void clickFacebookLoginButton(){
+	public FacebookPage clickFacebookLoginButton(){
 		Waits.waitForElementToBeClickable(driver, facebookLoginButton);
 		facebookLoginButton.click();
+		return this;
 	}
 
 	}

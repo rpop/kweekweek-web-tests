@@ -80,38 +80,44 @@ public class KweekweekHomepage {
 		return element;
 	}
     
-	public void clickLoginButtonOnLoginPopup () {
+	public KweekweekHomepage clickLoginButtonOnLoginPopup () {
 		Waits.waitForElementToBeClickable(driver, loginButton);
 		loginButton.click();
+		return this;
 		
 	}
 	
-	public void clickUsernameField(){
+	public KweekweekHomepage clickUsernameField(){
 		Waits.waitForElementToBeClickable(driver, loginUsernameField);
 		loginUsernameField.click();
+		return this;
 	}
 	
-	public void setLoginUsername(String username){
+	public KweekweekHomepage setLoginUsername(String username){
 		Waits.waitForElementToBeClickable(driver, loginUsernameField);
 		loginUsernameField.clear();
 		loginUsernameField.sendKeys(username);
+		return this;
 	}
 	
-	public void clickPasswordField(){
+	public KweekweekHomepage clickPasswordField(){
 		Waits.waitForElementToBeClickable(driver, loginPasswordField );
 		loginPasswordField.click();
+		return this;
 	}
 	
-	public void setLoginPassword(String password){
+	public KweekweekHomepage setLoginPassword(String password){
 		Waits.waitForElementToBeClickable(driver, loginPasswordField);
 		loginPasswordField.clear();
 		loginPasswordField.sendKeys(password);
+		return this;
 	}
 
-	public void clickLoginWithFacebook() {
+	public KweekweekHomepage clickLoginWithFacebook() {
 		Waits.waitForElementToBeClickable(driver, loginWithFacebookButton);
 		loginWithFacebookButton.click();
-    }
+		return this;
+	}
 	
 	public String getCssValueForField(WebElement element){
 		Waits.waitForElementToBeClickable(driver, element);
@@ -119,9 +125,10 @@ public class KweekweekHomepage {
 		
 	}
 	
-	public void clickOnEachElement(WebElement element){
+	public KweekweekHomepage clickOnEachElement(WebElement element){
 		Waits.waitForElementToBeClickable(driver, element);
 		element.click();
+		return this;
 	}
 	
 	public List<WebElement> getFieldsToBeClickedOnLoginPopup(){
@@ -132,140 +139,147 @@ public class KweekweekHomepage {
 		
 	}
 
-	public void clickForgotPasswordLink() {
+	public KweekweekHomepage clickForgotPasswordLink() {
 		Waits.waitForElementToBeClickable(driver, forgotPasswordLink);
 		forgotPasswordLink.click();
+		return this;
 	}
 
-	public void enterEmailResetPassword(String emailToReset) {
+	public KweekweekHomepage enterEmailResetPassword(String emailToReset) {
 		Waits.waitForElementToBeClickable(driver, resetPasswordEmailField);
 		resetPasswordEmailField.clear();
 		resetPasswordEmailField.sendKeys(emailToReset);
-		
+		return this;
 	}
 
-	public void clickResetPasswordSubmitButton() {
+	public KweekweekHomepage clickResetPasswordSubmitButton() {
 		Waits.waitForElementToBeClickable(driver,resetPasswordSubmitButton );
 		resetPasswordSubmitButton.click();
+		return this;
 		
 	}
 
-	public void setNewPassword(String password) {
+	public KweekweekHomepage setNewPassword(String password) {
 		Waits.waitForElementToBeClickable(driver, newPasswordField);
 		newPasswordField.clear();
 		newPasswordField.sendKeys(password);
-		
+		return this ;
 	}
 	
-	public void setNewPasswordConfirmation (String password){
+	public KweekweekHomepage setNewPasswordConfirmation (String password){
 		Waits.waitForElementToBeClickable(driver,confirmNewPasswordField );
 		confirmNewPasswordField.clear();
 		confirmNewPasswordField.sendKeys(password);
+		return this;
 	}
 
-	public void clickChangePassword() {
+	public KweekweekHomepage clickChangePassword() {
 		Waits.waitForElementToBeClickable(driver, changePasswordButton);
 		changePasswordButton.click();
-		
+		return this;
 	}
 
-	public void clickEventModule() {
+	public KweekweekHomepage clickEventModule() {
 		Waits.waitForElementToBeClickable(driver, eventModuleOnHomepage);
 		eventModuleOnHomepage.click();
-		
+		return this;
 	}
 	
-	public void hoverOverPoster (){
+	public KweekweekHomepage hoverOverPoster (){
 		Waits.waitForElementToBeClickable(driver, eventModuleOnHomepage);
 		Actions action = new Actions(driver);
 		//action.keyDown(Keys.PAGE_DOWN);
 		action.moveToElement(eventModuleOnHomepage).build().perform();
-       		
+       	return this;	
 	}
 
-	public void clickWishlistButtonOnModule() {
+	public KweekweekHomepage clickWishlistButtonOnModule() {
 		Waits.waitForElementToBeClickable(driver, wishlistButtonOnModule);
 		wishlistButtonOnModule.click();
-		
+		return this;
 	}
 
-	public void clickUserOnPoster() {
+	public KweekweekHomepage clickUserOnPoster() {
 		Waits.waitForElementToBeClickable(driver, hostOnPoster);
 		hostOnPoster.click();
+		return this;
 	}
 
-	public  void setFirstName(String firstName) {
+	public  KweekweekHomepage setFirstName(String firstName) {
 		Waits.waitForElementToBeClickable(driver, firstNameField);
 		firstNameField.clear();
 		firstNameField.sendKeys(firstName);
+		return this;
 	}
 
-	public void setLastName(String lastName) {
+	public KweekweekHomepage setLastName(String lastName) {
 		Waits.waitForElementToBeClickable(driver, lastNameField);
 		lastNameField.clear();
 		lastNameField.sendKeys(lastName);
+		return this;
 	}
 
-	public void selectGender() {
+	public KweekweekHomepage selectGender() {
 		Waits.waitForElementToBeClickable(driver, genderExpandArrow);
 		genderExpandArrow.click();
 		Waits.waitForElementToBeClickable(driver, maleOption);
 		maleOption.click();
-		
+		return this;
 	}
 
-	public void selectDob(String dateOfBirth) {
+	public KweekweekHomepage selectDob(String dateOfBirth) {
 		Waits.waitForElementToBeClickable(driver, dobField);
 		
 		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('readonly')", dobField); 
 		dobField.sendKeys(dateOfBirth);
 		((JavascriptExecutor) driver).executeScript("arguments[0].deleteElement", dobField); 
-		
+		return this;
 	}
 
-	public void setPasswordOnSignupPopup(String password) {
+	public KweekweekHomepage setPasswordOnSignupPopup(String password) {
 		Waits.waitForElementToBeClickable(driver, passwordField);
 		passwordField.clear();
 		passwordField.sendKeys(password);
-		
+		return this;
 	}
 
-	public void setConfirmPassword(String confirmPassword) {
+	public KweekweekHomepage setConfirmPassword(String confirmPassword) {
 		Waits.waitForElementToBeClickable(driver, confirmPasswordFieldOnSignup);
 		confirmPasswordFieldOnSignup.clear();
 		confirmPasswordFieldOnSignup.sendKeys(confirmPassword);
-		
+		return this;
 	}
 
-	public void setEmailOnSignup(String emailOnSignup) {
+	public KweekweekHomepage setEmailOnSignup(String emailOnSignup) {
 		Waits.waitForElementToBeClickable(driver, emailFieldOnSignup);
 		emailFieldOnSignup.clear();
 		emailFieldOnSignup.sendKeys(emailOnSignup);
-		
+		return this;
 	}
 
-	public void clickConfirmButtonOnConfirmationPopup() {
+	public KweekweekHomepage clickConfirmButtonOnConfirmationPopup() {
 		Waits.waitForElementToBeClickable(driver, confirmButton);
 		confirmButton.click();
-		
+		return this;
 	}
 
-	public void clickSignupButtonOnRegisterPopup() {
+	public KweekweekHomepage clickSignupButtonOnRegisterPopup() {
 		Waits.waitForElementToBeClickable(driver, signupButton);
 		signupButton.click();
-		
+		return this;
 	}
 
-	public void closeConfirmPopup() {
+	public KweekweekHomepage closeConfirmPopup() {
 		Waits.waitForElementToBeClickable(driver, closeConfirmPopupButton);
 		closeConfirmPopupButton.click();
-		
+		return this;
 	}
 	
-	public void clickFirstNameField() {
+	public KweekweekHomepage clickFirstNameField() {
 		
 		Waits.waitForElementToBeClickable(driver, firstNameField);
 	   firstNameField.click();
+	   return this;
 	}
 	
  
