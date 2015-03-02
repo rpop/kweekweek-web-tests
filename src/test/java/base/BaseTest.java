@@ -31,9 +31,9 @@ public class BaseTest {
     @BeforeMethod
     public void setup(){
     	
-    	/*Properties.setProperty();
-		driver = new ChromeDriver();*/
-		driver = new FirefoxDriver();
+    	Properties.setProperty();
+		driver = new ChromeDriver();
+		//driver = new FirefoxDriver();
 		driver.manage().window().maximize();
 		driver.get(TestAppEnv.getUrl());
 		driver.navigate().refresh();

@@ -1,6 +1,7 @@
 package loginTest;
 
 
+import java.awt.AWTException;
 import java.util.Iterator;
 
 import java.util.List;
@@ -89,7 +90,7 @@ public class KweekweekLoginTest extends BaseTest {
 		Assert.assertTrue(driver.getPageSource().contains("Invalid email, username or password. Please try again"));
 	}
 	@Test
-	public void correctMessageNoUsername() {
+	public void correctMessageNoUsername(){
 		KweekweekHomepage kweekweekHomepage = PageFactory.initElements(driver, KweekweekHomepage.class);
 		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
 		Waits.waitForSomeSeconds(2000);

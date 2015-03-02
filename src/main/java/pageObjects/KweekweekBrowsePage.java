@@ -1,5 +1,8 @@
 package pageObjects;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -28,5 +31,6 @@ public class KweekweekBrowsePage extends KweekweekHeader{
 		Actions action = new Actions(driver);
 		//action.keyDown(Keys.PAGE_DOWN);
 		action.moveToElement(eventModuleOnBrowse).build().perform();
+		
 	}
 }

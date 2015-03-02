@@ -1,5 +1,8 @@
 package utils;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -28,5 +31,18 @@ public class UtilityActions {
 		((JavascriptExecutor) driver).executeScript(
                 "arguments[0].scrollIntoView(true);", element);
 	}
+	
+	public static void zoomWithScroll(WebDriver driver){
+		try {
+			Robot robot = new Robot();
+			robot.mouseWheel(+1000);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	
 }
