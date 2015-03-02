@@ -38,79 +38,91 @@ public class GmailPage {
 		this.driver = driver;
 	}
 	
-	public void getGmailLoginPage(){
+	public GmailPage getGmailLoginPage(){
 		driver.get(TestAppEnv.getGmailLoginPage());
+		return this;
 	}
-	public void setGmailLoginEmail(String email){
+	public GmailPage setGmailLoginEmail(String email){
 		Waits.waitForElementToBeClickable(driver, gmailLoginEmailField);
 		gmailLoginEmailField.clear();
 		gmailLoginEmailField.sendKeys(email);
+		return this;
 	}
-	public void setGmailLoginPassword(String password){
+	public GmailPage setGmailLoginPassword(String password){
 		Waits.waitForElementToBeClickable(driver, gmailLoginPasswordField);
 		gmailLoginPasswordField.clear();
         gmailLoginPasswordField.sendKeys(password);
+        return this;
 	}
 	
-	public void clickGmailSigninButton(){
+	public GmailPage clickGmailSigninButton(){
 		Waits.waitForElementToBeClickable(driver, gmailSigninButton);
 		gmailSigninButton.click();
+		return this;
 	}
 	
-	public void clickGmailResetPasswordEmail(){
+	public GmailPage clickGmailResetPasswordEmail(){
 		Waits.waitForElementToBeClickable(driver, resetPasswordEmail);
 		resetPasswordEmail.click();
+		return this;
 	}
 	
-	public void clickGmailResetPasswordButton(){
+	public GmailPage clickGmailResetPasswordButton(){
 		Waits.waitForElementToBeClickable(driver, resetPasswordButton);
 		resetPasswordButton.click();
+		return this;
 	}
 	
-	public void deleteResetPasswordEmail(){
+	public GmailPage deleteResetPasswordEmail(){
 		Waits.waitForElementToBeClickable(driver, gmailDeleteMailButton);
 		gmailDeleteMailButton.click();
+		return this;
 	}
-	public void loginToGmail(String email, String password){
+	public GmailPage loginToGmail(String email, String password){
 		Waits.waitForElementToBeClickable(driver, gmailLoginEmailField);
 		setGmailLoginEmail(email);
 		Waits.waitForSomeSeconds(2000);
 		setGmailLoginPassword(password);
 		clickGmailSigninButton();
-		
+		return this;
 	}
 	
-	public void clickMailCheckbox(){
+	public GmailPage clickMailCheckbox(){
 		Waits.waitForElementToBeClickable(driver, mailCheckbox);
 		mailCheckbox.click();
+		return this;
 	}
 	
-	public void clickDeleteAllButtonInHeader(){
+	public GmailPage clickDeleteAllButtonInHeader(){
 		Waits.waitForElementToBeClickable(driver, gmailDeleteMailButton);
 		gmailDeleteMailButton.click();
+		return this;
 	}
 	
-	public void clickResetLink(){
+	public GmailPage clickResetLink(){
 		Waits.waitForElementToBeClickable(driver, resetPasswordEmail);
 		clickGmailResetPasswordButton();
 		clickGmailResetPasswordButton();
+		return this;
 	}
 	
-	public void deleteAllEmailsAfterTest(WebDriver driver){
+	public GmailPage deleteAllEmailsAfterTest(WebDriver driver){
 		clickMailCheckbox();
 	    clickDeleteAllButtonInHeader();
-	    
+	    return this;
 	}
 
-	public void clickGmailUnlockEmail() {
+	public GmailPage clickGmailUnlockEmail() {
 		Waits.waitForElementToBeClickable(driver, unlockAccountEmail);
 	   unlockAccountEmail.click();
-		
+		return this;
+	
 	}
 
-	public void clickUnlockAccountLinkInMail() {
+	public GmailPage clickUnlockAccountLinkInMail() {
 		Waits.waitForElementToBeClickable(driver, unlockAccountLink );
 	   unlockAccountLink.click();
+	   return this;
 		
 	}
 	

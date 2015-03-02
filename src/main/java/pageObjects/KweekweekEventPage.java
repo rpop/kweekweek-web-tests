@@ -30,37 +30,39 @@ public class KweekweekEventPage {
 		this.driver=driver;
 	}
 	
-	public void clickBookNowButtonOnEventPage(){
+	public KweekweekEventPage clickBookNowButtonOnEventPage(){
 		Waits.waitForElementToBeClickable(driver, bookNowButton);
 		bookNowButton.click();
+		return this;
 	}
 
-	public void clickWishlistButtonOnEventPage() {
+	public KweekweekEventPage clickWishlistButtonOnEventPage() {
 		Waits.waitForElementToBeClickable(driver, wishlistButtonOnEventPage);
 		wishlistButtonOnEventPage.click();
-		
+		return this;
 	}
 
-	public void clickAttendeesHeader() {
+	public KweekweekEventPage clickAttendeesHeader() {
 		Waits.waitForElementToBeClickable(driver, attendeesHeader);
 		attendeesHeader.click();
-		
+		return this;
 	}
 
-	public void clickFollowersOnEventPage() {
+	public KweekweekEventPage clickFollowersOnEventPage() {
 		Waits.waitForElementToBeClickable(driver, followersOnEventPage);
 		followersOnEventPage.click();
-		
+		return this;
 	}
 
-	public void clickContactHost() {
+	public KweekweekEventPage clickContactHost() {
 		Waits.waitForElementToBeClickable(driver, contactHostButton);
 		contactHostButton.click();
-		
+		return this;
 	}
 
-	public void clickOnHost() {
+	public KweekweekEventPage clickOnHost() {
 		Waits.waitForElementToBeClickable(driver, hostButton);
-		hostButton.click();		
+		hostButton.click();	
+		return this;
 	}
 }
