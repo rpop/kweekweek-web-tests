@@ -174,7 +174,7 @@ public class KweekweekLoginTest extends BaseTest {
 		kweekweekHeader.clickLoginButtonFromHeader();
 		kweekweekHomepage.clickForgotPasswordLink();
 		kweekweekHomepage.enterEmailResetPassword("sanityautotest@gmail.com");
-		kweekweekHomepage.clickResetPasswordSumitButton();
+		kweekweekHomepage.clickResetPasswordSubmitButton();
 		gmailPage.getGmailLoginPage();
 		gmailPage.loginToGmail("sanityautotest@gmail.com", "Pitech01");
 		gmailPage.clickGmailResetPasswordEmail();
