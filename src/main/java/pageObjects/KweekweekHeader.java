@@ -17,7 +17,7 @@ import utils.Waits;
 public class KweekweekHeader {
 
 	
-		WebDriver driver;
+		protected WebDriver driver;
 		@FindBy(xpath = "//a[@data-href='/users/login']") 
 		private WebElement loginButton;
 		@FindBy (id ="logoImage")
@@ -36,7 +36,7 @@ public class KweekweekHeader {
 		private WebElement addEventButtonOnHeader;
 		@FindBy (xpath = "//a[@data-href='/users/sign_up']")
 		private WebElement signupButtonOnHeader;
-		@FindBy (xpath = "//a[class='vector icon-header_settings_yellow active']")
+		@FindBy (id = "settings-dropdown")
 		private WebElement settingsButtonOnheader;
 		@FindBy (xpath = "//a[@class='vector icon-settings_log_out']")
 		private WebElement logoutButton;
@@ -46,33 +46,33 @@ public class KweekweekHeader {
 			this.driver = driver;
 		}
 		public void clickLoginButtonFromHeader(){
-			Waits.waitForVisibilityOfElement(driver, loginButton);
+			Waits.waitForElementToBeClickable(driver, loginButton);
 			loginButton.click();
 		}
 		public void clickKweekweekLogo(){
-			Waits.waitForVisibilityOfElement(driver, kweekweekLogo);
+			Waits.waitForElementToBeClickable(driver, kweekweekLogo);
 			kweekweekLogo.click();
 		}
 		public void clickSearchField(){
-			Waits.waitForVisibilityOfElement(driver, searchField);
+			Waits.waitForElementToBeClickable(driver, searchField);
 			searchField.click();
 		}
 		public void setQueryTest(String query){
-			Waits.waitForVisibilityOfElement(driver, searchField);
+			Waits.waitForElementToBeClickable(driver, searchField);
 			searchField.sendKeys(query);
 		}
 		public void clickSearchButton(){
-			Waits.waitForVisibilityOfElement(driver, queryButton);
+			Waits.waitForElementToBeClickable(driver, queryButton);
 			queryButton.click();
 		}
 		public void selectOptionFromSearchList(String option){
 			String xpath = "/discover/all-categories/events?event_type=";
-			Waits.waitForVisibilityOfElement(driver,driver.findElement(By.xpath("//a[@href='"+xpath+option+"']"))) ;
+			Waits.waitForElementToBeClickable(driver,driver.findElement(By.xpath("//a[@href='"+xpath+option+"']"))) ;
 			driver.findElement(By.xpath("//a[@href='"+xpath+option+"']")).click();
 		}
 		
 		public List addElementWithXpathToList (String option){
-			Waits.waitForVisibilityOfElement(driver, driver.findElement(By.xpath("//a[@class='active' and @data-target='"+option+"']")));
+			Waits.waitForElementToBeClickable(driver, driver.findElement(By.xpath("//a[@class='active' and @data-target='"+option+"']")));
 			List<Object> selected = new ArrayList<Object>();
 			selected.add(driver.findElement(By.xpath("//a[@class='active' and @data-target='"+option+"']")));
 			return selected;
@@ -107,25 +107,25 @@ public class KweekweekHeader {
 			return categories;
 		}
 		public void selectOptionFromCategoriesList(String category){
-			Waits.waitForVisibilityOfElement(driver, driver.findElement(By.xpath("//li[@class='" + category + "']")));
+			Waits.waitForElementToBeClickable(driver, driver.findElement(By.xpath("//li[@class='" + category + "']")));
 			driver.findElement(By.xpath("//li[@class='" + category + "']")).click();
-			System.out.println(driver.findElement(By.xpath("//li[@class='" + category + "']")).getText());
+			//System.out.println(driver.findElement(By.xpath("//li[@class='" + category + "']")).getText());
 			
 		}
 		public void clickCategoriesButton(){
-			Waits.waitForVisibilityOfElement(driver, extendCategoriesButton);
+			Waits.waitForElementToBeClickable(driver, extendCategoriesButton);
 			extendCategoriesButton.click();
 		}
 		
 		public String getCategoryOnModule(){
 			Actions action = new Actions(driver);
-			Waits.waitForVisibilityOfElement(driver, eventModule);
+			Waits.waitForElementToBeClickable(driver, eventModule);
 			action.moveToElement(eventModule).build().perform();
 			return categoryOnModule.getText();
 		}
 		
 		public String getSelectedCategory (String category){
-			Waits.waitForVisibilityOfElement(driver, driver.findElement(By.xpath("//li[@class='" + category + "']/a")));
+			Waits.waitForElementToBeClickable(driver, driver.findElement(By.xpath("//li[@class='" + category + "']/a")));
 			return driver.findElement(By.xpath("//li[@class='" + category + "']/a")).getText();
 			
 			
@@ -155,21 +155,21 @@ public class KweekweekHeader {
 		    return selectedCategory;
 		}
 		public void clickAddEventButton() {
-			Waits.waitForVisibilityOfElement(driver, addEventButtonOnHeader);
+			Waits.waitForElementToBeClickable(driver, addEventButtonOnHeader);
 			addEventButtonOnHeader.click();
 			
 		}
 		public void clickSignupButtonOnHeader() {
-		    Waits.waitForVisibilityOfElement(driver, signupButtonOnHeader);
+			Waits.waitForElementToBeClickable(driver, signupButtonOnHeader);
 		    signupButtonOnHeader.click();
 		}
 		public void clickSettingsButtonOnHeader() {
-			Waits.waitForVisibilityOfElement(driver, settingsButtonOnheader);
+			Waits.waitForElementToBeClickable(driver, settingsButtonOnheader);
 			settingsButtonOnheader.click();
 			
 		}
 		public void clickLogOut() {
-			Waits.waitForVisibilityOfElement(driver, logoutButton);
+			Waits.waitForElementToBeClickable(driver, logoutButton);
 			logoutButton.click();
 			
 		}

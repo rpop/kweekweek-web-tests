@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -15,7 +16,7 @@ import utils.Waits;
 
 public class KweekweekHomepage {
 	
-	WebDriver driver ;
+	private WebDriver driver ;
 	
 	public KweekweekHomepage(WebDriver driver){
 		this.driver=driver;
@@ -45,7 +46,7 @@ public class KweekweekHomepage {
     private WebElement confirmNewPasswordField;
     @FindBy(name="commit")
 	private WebElement changePasswordButton;
-    @FindBy (xpath="//a[@class='boxLink']")
+    @FindBy (xpath="//div[@data-filter='featured']/figure/a")
 	private WebElement eventModuleOnHomepage;
     @FindBy (xpath="//a[@class='vector like icon-enjoy js-wishlist']")
 	private WebElement wishlistButtonOnModule;
@@ -75,48 +76,51 @@ public class KweekweekHomepage {
 	private WebElement closeConfirmPopupButton;
 	
 	
-	
+	public WebElement getElementFromHomepageClass(WebElement element){
+		return element;
+	}
+    
 	public void clickLoginButtonOnLoginPopup () {
-		Waits.waitForVisibilityOfElement(driver, loginButton);
+		Waits.waitForElementToBeClickable(driver, loginButton);
 		loginButton.click();
 		
 	}
 	
 	public void clickUsernameField(){
-		Waits.waitForVisibilityOfElement(driver, loginUsernameField);
+		Waits.waitForElementToBeClickable(driver, loginUsernameField);
 		loginUsernameField.click();
 	}
 	
 	public void setLoginUsername(String username){
-		Waits.waitForVisibilityOfElement(driver, loginUsernameField);
+		Waits.waitForElementToBeClickable(driver, loginUsernameField);
 		loginUsernameField.clear();
 		loginUsernameField.sendKeys(username);
 	}
 	
 	public void clickPasswordField(){
-		Waits.waitForVisibilityOfElement(driver, loginPasswordField );
+		Waits.waitForElementToBeClickable(driver, loginPasswordField );
 		loginPasswordField.click();
 	}
 	
 	public void setLoginPassword(String password){
-		Waits.waitForVisibilityOfElement(driver, loginPasswordField);
+		Waits.waitForElementToBeClickable(driver, loginPasswordField);
 		loginPasswordField.clear();
 		loginPasswordField.sendKeys(password);
 	}
 
 	public void clickLoginWithFacebook() {
-		Waits.waitForVisibilityOfElement(driver, loginWithFacebookButton);
+		Waits.waitForElementToBeClickable(driver, loginWithFacebookButton);
 		loginWithFacebookButton.click();
     }
 	
 	public String getCssValueForField(WebElement element){
-		Waits.waitForVisibilityOfElement(driver, element);
+		Waits.waitForElementToBeClickable(driver, element);
 		return element.getCssValue("border-color");
 		
 	}
 	
 	public void clickOnEachElement(WebElement element){
-		Waits.waitForVisibilityOfElement(driver, element);
+		Waits.waitForElementToBeClickable(driver, element);
 		element.click();
 	}
 	
@@ -129,88 +133,89 @@ public class KweekweekHomepage {
 	}
 
 	public void clickForgotPasswordLink() {
-		Waits.waitForVisibilityOfElement(driver, forgotPasswordLink);
+		Waits.waitForElementToBeClickable(driver, forgotPasswordLink);
 		forgotPasswordLink.click();
 	}
 
 	public void enterEmailResetPassword(String emailToReset) {
-		Waits.waitForVisibilityOfElement(driver, resetPasswordEmailField);
+		Waits.waitForElementToBeClickable(driver, resetPasswordEmailField);
 		resetPasswordEmailField.clear();
 		resetPasswordEmailField.sendKeys(emailToReset);
 		
 	}
 
 	public void clickResetPasswordSumitButton() {
-		Waits.waitForVisibilityOfElement(driver,resetPasswordSubmitButton );
+		Waits.waitForElementToBeClickable(driver,resetPasswordSubmitButton );
 		resetPasswordSubmitButton.click();
 		
 	}
 
 	public void setNewPassword(String password) {
-		Waits.waitForVisibilityOfElement(driver, newPasswordField);
+		Waits.waitForElementToBeClickable(driver, newPasswordField);
 		newPasswordField.clear();
 		newPasswordField.sendKeys(password);
 		
 	}
 	
 	public void setNewPasswordConfirmation (String password){
-		Waits.waitForVisibilityOfElement(driver,confirmNewPasswordField );
+		Waits.waitForElementToBeClickable(driver,confirmNewPasswordField );
 		confirmNewPasswordField.clear();
 		confirmNewPasswordField.sendKeys(password);
 	}
 
 	public void clickChangePassword() {
-		Waits.waitForVisibilityOfElement(driver, changePasswordButton);
+		Waits.waitForElementToBeClickable(driver, changePasswordButton);
 		changePasswordButton.click();
 		
 	}
 
 	public void clickEventModule() {
-		Waits.waitForVisibilityOfElement(driver, eventModuleOnHomepage);
+		Waits.waitForElementToBeClickable(driver, eventModuleOnHomepage);
 		eventModuleOnHomepage.click();
 		
 	}
 	
 	public void hoverOverPoster (){
-	    Waits.waitForVisibilityOfElement(driver, eventModuleOnHomepage);
+		Waits.waitForElementToBeClickable(driver, eventModuleOnHomepage);
 		Actions action = new Actions(driver);
+		//action.keyDown(Keys.PAGE_DOWN);
 		action.moveToElement(eventModuleOnHomepage).build().perform();
        		
 	}
 
 	public void clickWishlistButtonOnModule() {
-		Waits.waitForVisibilityOfElement(driver, wishlistButtonOnModule);
+		Waits.waitForElementToBeClickable(driver, wishlistButtonOnModule);
 		wishlistButtonOnModule.click();
 		
 	}
 
 	public void clickUserOnPoster() {
-		Waits.waitForVisibilityOfElement(driver, hostOnPoster);
+		Waits.waitForElementToBeClickable(driver, hostOnPoster);
 		hostOnPoster.click();
 	}
 
 	public  void setFirstName(String firstName) {
-		Waits.waitForVisibilityOfElement(driver, firstNameField);
+		Waits.waitForElementToBeClickable(driver, firstNameField);
 		firstNameField.clear();
 		firstNameField.sendKeys(firstName);
 	}
 
 	public void setLastName(String lastName) {
-		Waits.waitForVisibilityOfElement(driver, lastNameField);
+		Waits.waitForElementToBeClickable(driver, lastNameField);
 		lastNameField.clear();
 		lastNameField.sendKeys(lastName);
 	}
 
 	public void selectGender() {
-		Waits.waitForVisibilityOfElement(driver, genderExpandArrow);
+		Waits.waitForElementToBeClickable(driver, genderExpandArrow);
 		genderExpandArrow.click();
-		Waits.waitForVisibilityOfElement(driver, maleOption);
+		Waits.waitForElementToBeClickable(driver, maleOption);
 		maleOption.click();
 		
 	}
 
 	public void selectDob(String dateOfBirth) {
-		Waits.waitForVisibilityOfElement(driver, dobField);
+		Waits.waitForElementToBeClickable(driver, dobField);
 		
 		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('readonly')", dobField); 
 		dobField.sendKeys(dateOfBirth);
@@ -219,47 +224,47 @@ public class KweekweekHomepage {
 	}
 
 	public void setPasswordOnSignupPopup(String password) {
-		Waits.waitForVisibilityOfElement(driver, passwordField);
+		Waits.waitForElementToBeClickable(driver, passwordField);
 		passwordField.clear();
 		passwordField.sendKeys(password);
 		
 	}
 
 	public void setConfirmPassword(String confirmPassword) {
-		Waits.waitForVisibilityOfElement(driver, confirmPasswordFieldOnSignup);
+		Waits.waitForElementToBeClickable(driver, confirmPasswordFieldOnSignup);
 		confirmPasswordFieldOnSignup.clear();
 		confirmPasswordFieldOnSignup.sendKeys(confirmPassword);
 		
 	}
 
 	public void setEmailOnSignup(String emailOnSignup) {
-		Waits.waitForVisibilityOfElement(driver, emailFieldOnSignup);
+		Waits.waitForElementToBeClickable(driver, emailFieldOnSignup);
 		emailFieldOnSignup.clear();
 		emailFieldOnSignup.sendKeys(emailOnSignup);
 		
 	}
 
 	public void clickConfirmButtonOnConfirmationPopup() {
-		Waits.waitForVisibilityOfElement(driver, confirmButton);
+		Waits.waitForElementToBeClickable(driver, confirmButton);
 		confirmButton.click();
 		
 	}
 
 	public void clickSignupButtonOnRegisterPopup() {
-		Waits.waitForVisibilityOfElement(driver, signupButton);
+		Waits.waitForElementToBeClickable(driver, signupButton);
 		signupButton.click();
 		
 	}
 
 	public void closeConfirmPopup() {
-		Waits.waitForVisibilityOfElement(driver, closeConfirmPopupButton);
+		Waits.waitForElementToBeClickable(driver, closeConfirmPopupButton);
 		closeConfirmPopupButton.click();
 		
 	}
 	
 	public void clickFirstNameField() {
 		
-	   Waits.waitForVisibilityOfElement(driver, firstNameField);
+		Waits.waitForElementToBeClickable(driver, firstNameField);
 	   firstNameField.click();
 	}
 	

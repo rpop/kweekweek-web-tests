@@ -9,7 +9,7 @@ import utils.Waits;
 public class KweekweekEventPage {
 
 	
-	WebDriver driver ;
+	private WebDriver driver ;
 	
 	@FindBy (id="book_ticket_button")
 	private WebElement bookNowButton;
@@ -31,36 +31,36 @@ public class KweekweekEventPage {
 	}
 	
 	public void clickBookNowButtonOnEventPage(){
-		Waits.waitForVisibilityOfElement(driver, bookNowButton);
+		Waits.waitForElementToBeClickable(driver, bookNowButton);
 		bookNowButton.click();
 	}
 
 	public void clickWishlistButtonOnEventPage() {
-		Waits.waitForVisibilityOfElement(driver, wishlistButtonOnEventPage);
+		Waits.waitForElementToBeClickable(driver, wishlistButtonOnEventPage);
 		wishlistButtonOnEventPage.click();
 		
 	}
 
 	public void clickAttendeesHeader() {
-		Waits.waitForVisibilityOfElement(driver, attendeesHeader);
+		Waits.waitForElementToBeClickable(driver, attendeesHeader);
 		attendeesHeader.click();
 		
 	}
 
 	public void clickFollowersOnEventPage() {
-		Waits.waitForVisibilityOfElement(driver, followersOnEventPage);
+		Waits.waitForElementToBeClickable(driver, followersOnEventPage);
 		followersOnEventPage.click();
 		
 	}
 
 	public void clickContactHost() {
-		Waits.waitForVisibilityOfElement(driver, contactHostButton);
+		Waits.waitForElementToBeClickable(driver, contactHostButton);
 		contactHostButton.click();
 		
 	}
 
 	public void clickOnHost() {
-		Waits.waitForVisibilityOfElement(driver, hostButton);
+		Waits.waitForElementToBeClickable(driver, hostButton);
 		hostButton.click();		
 	}
 }
