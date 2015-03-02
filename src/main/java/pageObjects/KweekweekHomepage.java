@@ -144,7 +144,7 @@ public class KweekweekHomepage {
 		
 	}
 
-	public void clickResetPasswordSumitButton() {
+	public void clickResetPasswordSubmitButton() {
 		Waits.waitForElementToBeClickable(driver,resetPasswordSubmitButton );
 		resetPasswordSubmitButton.click();
 		
