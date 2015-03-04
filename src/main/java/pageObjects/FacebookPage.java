@@ -20,11 +20,11 @@ public class FacebookPage {
 		this.driver = driver;
 	}
 	
-//	public FacebookPage clickFacebookEmailField(){
-//		Waits.waitForElementToBeClickable(driver, facebookLoginEmailField);
-//	    facebookLoginEmailField.click();
-//	    return this;
-//	}
+	public FacebookPage clickFacebookEmailField(){
+		Waits.waitForElementToBeClickable(driver, facebookLoginEmailField);
+	    facebookLoginEmailField.click();
+	    return this;
+	}
 	
 	public FacebookPage setFacebookLoginEmail(String facebookLoginEmail){
 		Waits.waitForElementToBeClickable(driver, facebookLoginEmailField);
