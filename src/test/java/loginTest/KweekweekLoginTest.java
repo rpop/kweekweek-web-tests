@@ -1,40 +1,20 @@
 package loginTest;
 
 
-import java.awt.AWTException;
-import java.util.Iterator;
-
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
+import base.BaseTest;
+import env.TestAppEnv;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import env.TestAppEnv;
-
-
-
-import pageObjects.FacebookPage;
-import pageObjects.GmailPage;
-import pageObjects.KweekweekBrowsePage;
-import pageObjects.KweekweekEventPage;
-import pageObjects.KweekweekHeader;
-import pageObjects.KweekweekHomepage;
+import pageObjects.*;
 import testData.Users;
 import utils.Iterations;
-import utils.UtilityActions;
 import utils.RandomStrings;
 import utils.Waits;
 
-import base.BaseTest;
+import java.util.List;
 
 public class KweekweekLoginTest extends BaseTest {
 	 	

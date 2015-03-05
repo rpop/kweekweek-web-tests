@@ -1,16 +1,12 @@
 package utils;
 
+import org.openqa.selenium.WebDriver;
+
 import java.util.Iterator;
 import java.util.Set;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.MoveToOffsetAction;
-import org.openqa.selenium.support.FindBy;
-
 public class Iterations {
 
-	
 	WebDriver driver;
 	
 	public Iterations(WebDriver driver){
@@ -27,6 +23,7 @@ public class Iterations {
             driver.switchTo().window(newwin);
         }
 	}
+
 	public static void returnToBaseWindow(WebDriver driver, String baseWindow){
 		 String originalHandle = baseWindow;
 

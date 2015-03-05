@@ -1,28 +1,15 @@
 package base;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-
-
-
+import env.TestAppEnv;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 import pageObjects.GmailPage;
-
-
-
 import utils.Properties;
-import env.TestAppEnv;
+import utils.Waits;
 
 
 public class BaseTest {
@@ -37,10 +24,8 @@ public class BaseTest {
 		driver.manage().window().maximize();
 		driver.get(TestAppEnv.getUrl());
 		driver.navigate().refresh();
-    	
     }
-    
-    
+
     @AfterMethod
     public void tearDown(ITestResult result) {
     	
@@ -49,10 +34,7 @@ public class BaseTest {
     		driver.get("https://mail.google.com/mail/#inbox");
     		gmailPage.deleteAllEmailsAfterTest(driver);
     	}
-      
+		Waits.waitForSomeSeconds(5000);
       driver.quit();
     }
-   
-    
-
 }

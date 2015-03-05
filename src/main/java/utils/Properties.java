@@ -8,8 +8,5 @@ public class Properties {
 	
 	public static String setProperty(){
 		return System.setProperty(chromeProperty, pathToProject + pathToChromedriver);
-		
-		
 	}
-
 }

@@ -22,5 +22,4 @@ public class RandomStrings {
 		String output = sb.toString() + "@blabla.com";
 		return output;
 	}
-
 }
