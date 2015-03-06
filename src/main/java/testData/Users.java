@@ -11,6 +11,7 @@ public class Users {
 	public static final String LOCKEDUSER = "lockeduser";
 	public static final String LOCKEDPASS = "123123";
 	public static final String LOCKEDEMAIL = "sanityautotest+1@gmail.com";
+	public static final String SHORTPASS = "123";
 
 	//sign up data
 	public static final String GENDER_M = "Male";

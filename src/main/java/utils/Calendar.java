@@ -12,7 +12,6 @@ public class Calendar {
 
     public static String getCurrentDate() {
         currentDate = new Date();
-        System.out.println(dft.format(currentDate));
         return dft.format(currentDate);
     }
 }

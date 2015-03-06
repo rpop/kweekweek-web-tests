@@ -287,4 +287,20 @@ public class KweekweekHomepage {
 	}
 
 
+
+	@FindBy (xpath = "//div[@class='form-group password required user_password has-error']/span")
+	private WebElement passwToShortError;
+
+	public String getSignUpPasswError(){
+		Waits.waitForVisibilityOfElement(driver, passwToShortError);
+		return passwToShortError.getText();
+	}
+
+	@FindBy (xpath = "//div[@class='form-group email required user_email has-error']/span")
+	private WebElement emailTakenError;
+
+	public String getSignUpEmailTakenError(){
+		Waits.waitForVisibilityOfElement(driver, emailTakenError);
+		return emailTakenError.getText();
+	}
 }
