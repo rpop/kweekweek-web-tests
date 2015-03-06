@@ -1,6 +1,7 @@
 package pageObjects;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -225,10 +226,10 @@ public class KweekweekHomepage {
 
 	public KweekweekHomepage selectDob(String dateOfBirth) {
 		Waits.waitForElementToBeClickable(driver, dobField);
-		
 		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('readonly')", dobField); 
 		dobField.sendKeys(dateOfBirth);
-		((JavascriptExecutor) driver).executeScript("arguments[0].deleteElement", dobField); 
+		((JavascriptExecutor) driver).executeScript("arguments[0].deleteElement", dobField);
+		dobField.sendKeys(Keys.RETURN);
 		return this;
 	}
 
@@ -273,7 +274,17 @@ public class KweekweekHomepage {
 	
 	public KweekweekHomepage clickFirstNameField() {
 		Waits.waitForElementToBeClickable(driver, firstNameField);
-	   firstNameField.click();
-	   return this;
+	   	firstNameField.click();
+	   	return this;
 	}
+
+	@FindBy (id="custom")
+	private WebElement confirmationTextForAssert;
+
+	public String getSignUpConfirmationText(){
+		Waits.waitForVisibilityOfElement(driver, confirmationTextForAssert);
+		return confirmationTextForAssert.getText();
+	}
+
+
 }
