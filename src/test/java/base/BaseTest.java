@@ -41,7 +41,7 @@ public class BaseTest {
     		driver.get("https://mail.google.com/mail/#inbox");
     		gmailPage.deleteAllEmailsAfterTest(driver);
     	}
-		Waits.waitForSomeSeconds(6000);
-      driver.quit();
+		Waits.waitForSomeSeconds(3000);
+      //driver.quit();
     }
 }

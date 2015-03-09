@@ -303,4 +303,44 @@ public class KweekweekHomepage {
 		Waits.waitForVisibilityOfElement(driver, emailTakenError);
 		return emailTakenError.getText();
 	}
+
+	@FindBy (xpath = "//input[@class='btn btn btn-primary btn-login']")
+	private WebElement confirmSignUpButton;
+
+	public KweekweekHomepage clickConfirmSignUpButton() {
+		Waits.waitForElementToBeClickable(driver, confirmSignUpButton);
+		confirmSignUpButton.click();
+		return this;
+	}
+
+	@FindBy (id="kwk_users_confirm_account_form_username")
+	private WebElement usernameConfirmationField;
+
+	public String getUsernameConfirmationValue(){
+		//Waits.waitForVisibilityOfElement(driver, confirmationTextForAssert);
+		return usernameConfirmationField.getText();
+	}
+
+	@FindBy (xpath = "//a[@class='primary-link']")
+	private WebElement termsAndConditionsLinkOnSignupPopUp;
+
+	public KweekweekHomepage clickTermsAndConditionsLinkOnSignupPopUp(){
+		Waits.waitForElementToBeClickable(driver, termsAndConditionsLinkOnSignupPopUp);
+		termsAndConditionsLinkOnSignupPopUp.click();
+		return this;
+	}
+
+	public String getLoginWithFacebookButtonText(){
+		Waits.waitForElementToBeClickable(driver, loginWithFacebookButton);
+		return loginWithFacebookButton.getText();
+	}
+
+	@FindBy (xpath = "//a[@class='switchLink primary-link']")
+	private WebElement loginLinkOnSignupPopUp;
+
+	public KweekweekHomepage clickLoginLinkOnSignupPopUp(){
+		Waits.waitForElementToBeClickable(driver, loginLinkOnSignupPopUp);
+		loginLinkOnSignupPopUp.click();
+		return this;
+	}
 }

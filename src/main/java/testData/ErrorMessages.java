@@ -11,4 +11,5 @@ public class ErrorMessages {
     public static final String SIGNUP_ERROR_TAKEN_EMAIL = "Email has already been taken";
     public static final String SIGNUP_ERROR_REQUIRED_PASSW = "Password is required";
     public static final String SIGNUP_ERROR_NOTMATCH_PASSW = "does not match";
+    public static final String SIGNUP_ERROR_INVALID_EMAIL = "is invalid";
 }
