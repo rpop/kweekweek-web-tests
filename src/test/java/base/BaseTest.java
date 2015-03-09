@@ -42,6 +42,6 @@ public class BaseTest {
     		gmailPage.deleteAllEmailsAfterTest(driver);
     	}
 		Waits.waitForSomeSeconds(3000);
-      //driver.quit();
+      	driver.quit();
     }
 }

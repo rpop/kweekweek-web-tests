@@ -51,7 +51,6 @@ public class FacebookPage {
 		facebookLoginButton.click();
 		return this;
 	}
-
 	}
 
 

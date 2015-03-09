@@ -3,6 +3,7 @@ package signupTest;
 import base.BaseTest;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
+import pageObjects.FacebookPage;
 import pageObjects.KweekweekHeader;
 import pageObjects.KweekweekHomepage;
 import utils.RandomStrings;
@@ -11,7 +12,7 @@ import utils.Waits;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static testData.Users.LOCKEDPASS;
+import static testData.Users.*;
 import static utils.Calendar.getCurrentDate;
 
 /**
@@ -21,7 +22,7 @@ import static utils.Calendar.getCurrentDate;
 public class SignupPozitiveTest extends BaseTest{
 
     @Test
-    public void reachSignUpWithEmailConfirmationTest(){
+    public void reachConfirmationSignUpWithEmailTest(){
         KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
         KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
         Waits.waitForSomeSeconds(800);
@@ -83,5 +84,45 @@ public class SignupPozitiveTest extends BaseTest{
         assertThat(kweekweekHomePage.getLoginWithFacebookButtonText(), equalTo("Sign up with Facebook"));
     }
 
+    @Test
+    public void successfulSignUpWithFacebookTest(){
+        KweekweekHomepage kweekweekHomepage = PageFactory.initElements(driver, KweekweekHomepage.class);
+        KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
+        FacebookPage facebookPage = PageFactory.initElements(driver, FacebookPage.class);
+        Waits.waitForSomeSeconds(800);
+        kweekweekHeader.clickSignupButtonOnHeader();
+        Waits.waitForSomeSeconds(2000);
+        kweekweekHomepage.clickLoginWithFacebook();
+        facebookPage.setFacebookLoginEmail(FACEBOOKUSER1)
+                .setFacebookLoginPassword(FACEBOOKPASSWORD1)
+                .clickFacebookLoginButton();
+        Waits.waitForSomeSeconds(2000);
+        String username = kweekweekHomepage.getUsernameConfirmationValue();
+        kweekweekHomepage.clickConfirmSignUpButton();
+        Waits.waitForSomeSeconds(2000);
+        assertThat(driver.getPageSource().contains(username), is(true));
+    }
 
+    @Test
+    public void closeSignUpPopupTest(){
+        KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
+        KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
+        Waits.waitForSomeSeconds(800);
+        kweekweekHeader.clickSignupButtonOnHeader();
+        Waits.waitForSomeSeconds(2000);
+        kweekweekHomePage.clickCloseSignupPopUpButton();
+        Waits.waitForSomeSeconds(500);
+        assertThat(driver.getPageSource().contains("Sign up with Facebook"), is(false));
+    }
+
+    @Test
+    public void Test(){
+        KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
+        KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
+        Waits.waitForSomeSeconds(800);
+        kweekweekHeader.clickSignupButtonOnHeader();
+        Waits.waitForSomeSeconds(2000);
+        kweekweekHomePage.selectDateOfBirth("25", "Apr", "1980");
+        Waits.waitForSomeSeconds(3000);
+    }
 }

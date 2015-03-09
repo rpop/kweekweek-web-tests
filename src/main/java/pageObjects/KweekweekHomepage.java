@@ -1,11 +1,9 @@
 package pageObjects;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import utils.Waits;
 
 import java.util.ArrayList;
@@ -343,4 +341,31 @@ public class KweekweekHomepage {
 		loginLinkOnSignupPopUp.click();
 		return this;
 	}
+
+	@FindBy (xpath = "//div[@class='modal-content']/div/button")
+	private WebElement closeSignupPopUpButton;
+
+	public KweekweekHomepage clickCloseSignupPopUpButton(){
+		Waits.waitForElementToBeClickable(driver, closeSignupPopUpButton);
+		closeSignupPopUpButton.click();
+		return this;
+	}
+
+	public KweekweekHomepage selectDateOfBirth(String day, String month, String year){
+		Waits.waitForElementToBeClickable(driver, dobField);
+		dobField.click();
+		Select yearSelection = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-year']")));
+		yearSelection.selectByValue(year);
+		Select monthSelection = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
+		monthSelection.selectByVisibleText(month);
+		List<WebElement> taskList = driver.findElements(By.xpath("//a[contains(@href,'#')]"));
+		for (WebElement element : taskList) {
+			if (element.getText().contains(day)) {
+				element.click();
+				break;
+			}
+		}
+		return this;
+	}
+
 }

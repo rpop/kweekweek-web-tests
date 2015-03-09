@@ -13,6 +13,9 @@ public class Users {
 	public static final String LOCKEDEMAIL = "sanityautotest+1@gmail.com";
 	public static final String SHORTPASS = "123";
 
+	public static final String FACEBOOKUSER1	= "vlad.tamas@pitechnologies.ro";
+	public static final String FACEBOOKPASSWORD1 = "pitech123";
+
 	//sign up data
 	public static final String GENDER_M = "Male";
 	public static final String GENDER_F = "Female";
