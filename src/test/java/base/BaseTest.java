@@ -11,6 +11,8 @@ import pageObjects.GmailPage;
 import utils.Properties;
 import utils.Waits;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class BaseTest {
      protected WebDriver driver;
@@ -29,8 +31,10 @@ public class BaseTest {
 //		robot.keyRelease(InputEvent.VK_ESCAPE);
 		driver.manage().window().maximize();
 		driver.get(TestAppEnv.getUrl());
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.navigate().refresh();
-		Waits.waitForSomeSeconds(1000);
+		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		Waits.waitForSomeSeconds(2000);
     }
 
     @AfterMethod
@@ -41,7 +45,7 @@ public class BaseTest {
     		driver.get("https://mail.google.com/mail/#inbox");
     		gmailPage.deleteAllEmailsAfterTest(driver);
     	}
-		Waits.waitForSomeSeconds(3000);
+		//Waits.waitForSomeSeconds(1000);
       	driver.quit();
     }
 }

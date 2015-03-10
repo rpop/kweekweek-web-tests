@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import pageObjects.KweekweekHeader;
 import pageObjects.KweekweekHomepage;
 import utils.RandomStrings;
-import utils.Waits;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -23,7 +22,7 @@ public class SignupNegativeTest extends BaseTest {
     public void checkSignupErrorValidationsTest() {
         KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
         kweekweekHeader.clickSignupButtonOnHeader();
-        Waits.waitForSomeSeconds(800);
+        //Waits.waitForSomeSeconds(800);
         kweekweekHeader.clickSignUpButtonOnSignUpForm();
         assertThat(kweekweekHeader.getSignupAlertMessage(), equalTo(SIGNUP_ERROR_ALERT_TOP));
     }
@@ -46,9 +45,9 @@ public class SignupNegativeTest extends BaseTest {
     public void signupEmailTakenErrorValidationTest(String email, String errorMessage){
         KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
         KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
-        Waits.waitForSomeSeconds(800);
+        //Waits.waitForSomeSeconds(800);
         kweekweekHeader.clickSignupButtonOnHeader();
-        Waits.waitForSomeSeconds(800);
+        //Waits.waitForSomeSeconds(800);
         kweekweekHomePage.setFirstName(RandomStrings.generateRandomString(5))
                 .setLastName(RandomStrings.generateRandomString(7))
                 .setEmailOnSignup(email)
@@ -57,7 +56,7 @@ public class SignupNegativeTest extends BaseTest {
                 .setPasswordOnSignupPopup(NORMALPASSWORD)
                 .setConfirmPassword(NORMALPASSWORD)
                 .clickSignupButtonOnRegisterPopup();
-        Waits.waitForSomeSeconds(1500);
+        //Waits.waitForSomeSeconds(1500);
         assertThat(kweekweekHomePage.getSignUpEmailTakenError(), equalTo(errorMessage));
     }
 
@@ -76,9 +75,9 @@ public class SignupNegativeTest extends BaseTest {
     public void invalidPasswordErrorValidationTest(String passw, String confirmPassw, String errorMessage){
         KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
         KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
-        Waits.waitForSomeSeconds(800);
+        //Waits.waitForSomeSeconds(800);
         kweekweekHeader.clickSignupButtonOnHeader();
-        Waits.waitForSomeSeconds(800);
+        //Waits.waitForSomeSeconds(800);
         kweekweekHomePage.setFirstName(RandomStrings.generateRandomString(5))
                 .setLastName(RandomStrings.generateRandomString(7))
                 .setEmailOnSignup(RandomStrings.generateRandomEmailString(6))
@@ -87,7 +86,7 @@ public class SignupNegativeTest extends BaseTest {
                 .setPasswordOnSignupPopup(passw)
                 .setConfirmPassword(confirmPassw)
                 .clickSignupButtonOnRegisterPopup();
-        Waits.waitForSomeSeconds(1500);
+        //Waits.waitForSomeSeconds(1500);
         assertThat(kweekweekHomePage.getSignUpPasswError(), equalTo(errorMessage));
     }
 }
