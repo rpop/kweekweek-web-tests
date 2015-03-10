@@ -3,6 +3,7 @@ package base;
 import env.TestAppEnv;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -17,9 +18,9 @@ public class BaseTest {
 
     @BeforeMethod
     public void setup(){
-    	Properties.setProperty();
-		driver = new ChromeDriver();
-		//driver = new FirefoxDriver();
+    	//Properties.setProperty();
+		//driver = new ChromeDriver();
+		driver = Properties.getFirefoxProfile();
 //		driver.get("https://www.google.ro");
 //		Cookie ck = new Cookie("mobile_app_desktop", "0---2015-03-06+07%3A24%3A36");
 //		driver.manage().addCookie(ck);
@@ -29,7 +30,7 @@ public class BaseTest {
 //		robot.keyRelease(InputEvent.VK_ESCAPE);
 		driver.manage().window().maximize();
 		driver.get(TestAppEnv.getUrl());
-		driver.navigate().refresh();
+		//driver.navigate().refresh();
 		Waits.waitForSomeSeconds(1000);
     }
 
