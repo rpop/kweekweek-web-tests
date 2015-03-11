@@ -1,12 +1,15 @@
 package homepageTests;
 import base.BaseTest;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pageObjects.KweekweekBrowsePage;
 import pageObjects.KweekweekHomepage;
 import utils.Waits;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 /**
  * Created by vlad.tamas on 3/10/2015.
@@ -44,12 +47,30 @@ public class HomepagePozitiveTest extends BaseTest {
         assertThat(color, equalTo("rgba(253, 203, 5, 1)")); // nu stie ia culoarea potrivita
     }
 
-    @Test
-    public void clickTodayUnderDescoveryEventsTest(){
+    @DataProvider
+    public Object[][] discoverEvents(){
+        return new Object[][]{
+                {"tomorrow", "Tomorrow"},
+                {"today", "Today"},
+                {"latest", "All Dates"}
+        };
+    }
+
+    @Test(dataProvider = "discoverEvents")
+    public void DescoveryEventsTest(String dayEvent, String dayEventOnBrowsePage){
+        KweekweekBrowsePage kweekweekBrowsePage = PageFactory.initElements(driver, KweekweekBrowsePage.class);
         KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
-        kweekweekHomePage.clickDiscoverEventsToday()
-                         .clickSeeMoreEventsLink();
-        Waits.waitForSomeSeconds(4000);
-        //incomplet
+        kweekweekHomePage.clickDiscoverEvents(dayEvent)
+                         .clickSeeMoreEventsLink(dayEvent);
+        assertThat(kweekweekBrowsePage.getBrowseSelectedDate(), equalToIgnoringCase(dayEventOnBrowsePage));
+    }
+
+    @Test
+    public void browseByCategoryTest(){
+        KweekweekBrowsePage kweekweekBrowsePage = PageFactory.initElements(driver, KweekweekBrowsePage.class);
+        KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
+        kweekweekHomePage.clickCategoriesDropDownBtn()
+                         .selectCategoryToBrowse("Entertainment");
+        assertThat(kweekweekBrowsePage.getActiveCategory(), equalToIgnoringCase("Entertainment"));
     }
 }

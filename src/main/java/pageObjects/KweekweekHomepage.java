@@ -430,25 +430,52 @@ public class KweekweekHomepage {
 		return sliderPreviousButton.getCssValue("color");
 	}
 
-	@FindBy (xpath = "//div[@id='filters']/ul/li[2]")
-	private WebElement seeMoreEventsLink;
+	@FindBy (xpath = "//div[@class='events-section']/div[2]/div[7]//a")
+	private WebElement seeMoreEventsTodayLink;
 
-	public KweekweekHomepage clickSeeMoreEventsLink(){
-		Waits.waitForElementToBeClickable(driver, seeMoreEventsLink);
-		seeMoreEventsLink.click();
+	@FindBy (xpath = "//div[@class='events-section']/div[5]/div[7]//a")
+	private WebElement seeMoreEventsLatestLink;
+
+	@FindBy (xpath = "//div[@class='events-section']/div[3]/div[7]//a")
+	private WebElement seeMoreEventsTomorrowLink;
+
+	public KweekweekHomepage clickSeeMoreEventsLink(String event){
+		if (event.contains("latest")) {
+			Waits.waitForElementToBeClickable(driver, seeMoreEventsLatestLink);
+			seeMoreEventsLatestLink.click();
+		}
+		if (event.contains("today")) {
+			Waits.waitForElementToBeClickable(driver, seeMoreEventsTodayLink);
+			seeMoreEventsTodayLink.click();
+		}
+		if (event.contains("tomorrow")) {
+			Waits.waitForElementToBeClickable(driver, seeMoreEventsTomorrowLink);
+			seeMoreEventsTomorrowLink.click();
+		}
 		return this;
 	}
 
-	@FindBy (xpath = "//div[@id='filters']/ul/li[2]")
-	private WebElement discoverEventsToday;
-
-	public KweekweekHomepage clickDiscoverEventsToday(){
+	public KweekweekHomepage clickDiscoverEvents(String event){
+		WebElement discoverEvents = driver.findElement(By.xpath("//div[@id='filters']/ul//a[@data-target='" +event+"']"));
 		Actions action = new Actions(driver);
 		action.sendKeys(Keys.PAGE_DOWN);
-		action.moveToElement(discoverEventsToday).build().perform();
-		action.click(discoverEventsToday).build().perform();
+		action.moveToElement(discoverEvents).build().perform();
+		action.click(discoverEvents).build().perform();
 		return this;
 	}
 
+	@FindBy (xpath = "//div[@id='categories-link']/a")
+	private WebElement categoriesDropDownBtn;
 
+	public KweekweekHomepage clickCategoriesDropDownBtn(){
+		Waits.waitForElementToBeClickable(driver, categoriesDropDownBtn);
+		categoriesDropDownBtn.click();
+		return this;
+	}
+
+	public KweekweekHomepage selectCategoryToBrowse(String category) {
+		WebElement discoverEvents = driver.findElement(By.xpath("//div[@class='categ-item submenu']/ul//a[contains(text(), '" + category + "')]"));
+		discoverEvents.click();
+		return this;
+	}
 }
