@@ -2,7 +2,6 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,7 +11,7 @@ public class Waits {
 	
 	
 	public static void waitForVisibilityOfElement(WebDriver driver,WebElement element){
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		
 	}
@@ -25,7 +24,7 @@ public class Waits {
 	}
 	
 	public static void waitForElementToBeClickable(WebDriver driver, WebElement element){
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 	

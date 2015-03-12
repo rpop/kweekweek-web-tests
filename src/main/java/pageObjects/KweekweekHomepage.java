@@ -1,18 +1,13 @@
 package pageObjects;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.RandomStrings;
+import org.openqa.selenium.support.ui.Select;
 import utils.Waits;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class KweekweekHomepage {
 	
@@ -229,10 +224,10 @@ public class KweekweekHomepage {
 
 	public KweekweekHomepage selectDob(String dateOfBirth) {
 		Waits.waitForElementToBeClickable(driver, dobField);
-		
 		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('readonly')", dobField); 
 		dobField.sendKeys(dateOfBirth);
-		((JavascriptExecutor) driver).executeScript("arguments[0].deleteElement", dobField); 
+		((JavascriptExecutor) driver).executeScript("arguments[0].deleteElement", dobField);
+		dobField.sendKeys(Keys.RETURN);
 		return this;
 	}
 
@@ -276,16 +271,101 @@ public class KweekweekHomepage {
 	}
 	
 	public KweekweekHomepage clickFirstNameField() {
-		
 		Waits.waitForElementToBeClickable(driver, firstNameField);
-	   firstNameField.click();
-	   return this;
+	   	firstNameField.click();
+	   	return this;
 	}
-	
- 
-	
-	
-	
-	
+
+	@FindBy (id="custom")
+	private WebElement confirmationTextForAssert;
+
+	public String getSignUpConfirmationText(){
+		Waits.waitForVisibilityOfElement(driver, confirmationTextForAssert);
+		return confirmationTextForAssert.getText();
+	}
+
+
+
+	@FindBy (xpath = "//div[@class='form-group password required user_password has-error']/span")
+	private WebElement passwToShortError;
+
+	public String getSignUpPasswError(){
+		Waits.waitForVisibilityOfElement(driver, passwToShortError);
+		return passwToShortError.getText();
+	}
+
+	@FindBy (xpath = "//div[@class='form-group email required user_email has-error']/span")
+	private WebElement emailTakenError;
+
+	public String getSignUpEmailTakenError(){
+		Waits.waitForVisibilityOfElement(driver, emailTakenError);
+		return emailTakenError.getText();
+	}
+
+	@FindBy (xpath = "//input[@class='btn btn btn-primary btn-login']")
+	private WebElement confirmSignUpButton;
+
+	public KweekweekHomepage clickConfirmSignUpButton() {
+		Waits.waitForElementToBeClickable(driver, confirmSignUpButton);
+		confirmSignUpButton.click();
+		return this;
+	}
+
+	@FindBy (id="kwk_users_confirm_account_form_username")
+	private WebElement usernameConfirmationField;
+
+	public String getUsernameConfirmationValue(){
+		//Waits.waitForVisibilityOfElement(driver, confirmationTextForAssert);
+		return usernameConfirmationField.getText();
+	}
+
+	@FindBy (xpath = "//a[@class='primary-link']")
+	private WebElement termsAndConditionsLinkOnSignupPopUp;
+
+	public KweekweekHomepage clickTermsAndConditionsLinkOnSignupPopUp(){
+		Waits.waitForElementToBeClickable(driver, termsAndConditionsLinkOnSignupPopUp);
+		termsAndConditionsLinkOnSignupPopUp.click();
+		return this;
+	}
+
+	public String getLoginWithFacebookButtonText(){
+		Waits.waitForElementToBeClickable(driver, loginWithFacebookButton);
+		return loginWithFacebookButton.getText();
+	}
+
+	@FindBy (xpath = "//a[@class='switchLink primary-link']")
+	private WebElement loginLinkOnSignupPopUp;
+
+	public KweekweekHomepage clickLoginLinkOnSignupPopUp(){
+		Waits.waitForElementToBeClickable(driver, loginLinkOnSignupPopUp);
+		loginLinkOnSignupPopUp.click();
+		return this;
+	}
+
+	@FindBy (xpath = "//div[@class='modal-content']/div/button")
+	private WebElement closeSignupPopUpButton;
+
+	public KweekweekHomepage clickCloseSignupPopUpButton(){
+		Waits.waitForElementToBeClickable(driver, closeSignupPopUpButton);
+		closeSignupPopUpButton.click();
+		return this;
+	}
+
+	public KweekweekHomepage selectDateOfBirth(String day, String month, String year){
+		Waits.waitForElementToBeClickable(driver, dobField);
+		dobField.click();
+		Select yearSelection = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-year']")));
+		yearSelection.selectByValue(year);
+		Select monthSelection = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
+		monthSelection.selectByVisibleText(month);
+		List<WebElement> taskList = driver.findElements(By.xpath("//a[contains(@href,'#')]"));
+		for (WebElement element : taskList) {
+			if (element.getText().contains(day)) {
+				element.click();
+				break;
+			}
+		}
+		return this;
+	}
 
 }
