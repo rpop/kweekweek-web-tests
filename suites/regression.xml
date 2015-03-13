@@ -2,9 +2,9 @@
 
 <suite name="Regresion">
 
-    <test name="Sign up tests">
+    <test name="Homepage tests">
         <packages>
-            <package name="signupTest"/>
+            <package name="homepageTests"/>
         </packages>
     </test>
 

@@ -196,7 +196,6 @@ public class KweekweekHeader {
 	public void clickSettingsButtonOnHeader() {
 		Waits.waitForElementToBeClickable(driver, settingsButtonOnheader);
 		settingsButtonOnheader.click();
-
 	}
 
 	public void clickLogOut() {

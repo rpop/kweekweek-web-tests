@@ -1,15 +1,21 @@
 package homepageTests;
+
 import base.BaseTest;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageObjects.KweekweekBrowsePage;
+import pageObjects.KweekweekEventPage;
 import pageObjects.KweekweekHomepage;
+import utils.CheckBrokenLinks;
 import utils.Waits;
 
+import java.net.URL;
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.hamcrest.Matchers.*;
 
 /**
  * Created by vlad.tamas on 3/10/2015.
@@ -44,7 +50,7 @@ public class HomepagePozitiveTest extends BaseTest {
         KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
         String color = kweekweekHomePage.getSliderPreviousButtonColorAtHover();
         System.out.println(color);
-        assertThat(color, equalTo("rgba(253, 203, 5, 1)")); // nu stie ia culoarea potrivita
+        assertThat(color, equalTo("rgba(253, 203, 5, 1)")); //todo nu stie culoarea potrivita
     }
 
     @DataProvider
@@ -72,5 +78,43 @@ public class HomepagePozitiveTest extends BaseTest {
         kweekweekHomePage.clickCategoriesDropDownBtn()
                          .selectCategoryToBrowse("Entertainment");
         assertThat(kweekweekBrowsePage.getActiveCategory(), equalToIgnoringCase("Entertainment"));
+    }
+
+    @Test
+    public void geCategoryColorAtHoverTest(){
+        KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
+        String color[] = kweekweekHomePage.getCategoryColorAtHover();
+        assertThat(color[0], not(equalTo(color[1])));
+    }
+
+    @Test
+    public void clickHowItWorksButtonTest(){
+        KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
+        kweekweekHomePage.clickHowItWorksButton();
+        assertThat(driver.getCurrentUrl(), containsString("how-it-works"));
+    }
+
+    @Test
+    public void downloadAppsExternalLinksTest() throws Exception{
+        KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
+        List<WebElement> allLinksList = kweekweekHomePage.getDownloadAppsExternalLinks(driver);
+        for(WebElement element : allLinksList) {
+            try {
+                assertThat(CheckBrokenLinks.isLinkBroken(new URL(element.getAttribute("href"))), equalTo("OK 200"));
+            } catch (Exception e) {
+                System.out.println("At " + element.getAttribute("innerHTML") + " Exception occured; " + e.getMessage());
+            }
+        }
+    }
+
+    @Test
+    public void checkRecomandationTest(){
+        KweekweekBrowsePage kweekweekBrowsePage = PageFactory.initElements(driver, KweekweekBrowsePage.class);
+        KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
+        KweekweekEventPage kweekweekEventPage = PageFactory.initElements(driver, KweekweekEventPage.class);
+        kweekweekHomePage.clickSearchField()
+                         .clickSearchFieldAllEvents();
+        kweekweekBrowsePage.clickFirstOption();
+        assertThat(kweekweekEventPage.getEventCategory(), equalTo(kweekweekEventPage.getRecommendationEventCategory()));
     }
 }

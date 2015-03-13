@@ -44,4 +44,13 @@ public class KweekweekBrowsePage extends KweekweekHeader{
 		Waits.waitForElementToBeClickable(driver, activeCategory);
 		return activeCategory.getText();
 	}
+
+	@FindBy (xpath = "//div[@id='events-results-holder']/div/figure")
+	private WebElement firstEventDisplayed;
+
+	public KweekweekBrowsePage clickFirstOption() {
+		Waits.waitForVisibilityOfElement(driver, firstEventDisplayed);
+		firstEventDisplayed.click();
+		return null;
+	}
 }

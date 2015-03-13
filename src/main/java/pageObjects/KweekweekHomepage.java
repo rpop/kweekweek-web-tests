@@ -203,7 +203,6 @@ public class KweekweekHomepage {
 	}
 
 	public  KweekweekHomepage setFirstName(String firstName) {
-
 		Waits.waitForElementToBeClickable(driver, firstNameField);
 		firstNameField.clear();
 		firstNameField.sendKeys(firstName);
@@ -286,8 +285,6 @@ public class KweekweekHomepage {
 		Waits.waitForVisibilityOfElement(driver, confirmationTextForAssert);
 		return confirmationTextForAssert.getText();
 	}
-
-
 
 	@FindBy (xpath = "//div[@class='form-group password required user_password has-error']/span")
 	private WebElement passwToShortError;
@@ -374,7 +371,7 @@ public class KweekweekHomepage {
 	@FindBy (xpath = "//ul[@class='slides']/li[@class='flex-active-slide']")
 	private WebElement homepageActiveSlider;
 
-	@FindBy (xpath = "//a[@class='flex-prev']")
+	@FindBy (css = ".flexslider>.flex-direction-nav>li")
 	private WebElement sliderPreviousButton;
 
 	public KweekweekHomepage clickSliderPreviousButton(){
@@ -421,12 +418,16 @@ public class KweekweekHomepage {
 		return eventProviderTitle.getText();
 	}
 
+	@FindBy (xpath = "//ul[@class='flex-direction-nav']/li")
+	private WebElement sliderPreviousButton2;
+
 	public String getSliderPreviousButtonColorAtHover() {
 		Waits.waitForVisibilityOfElement(driver, homepageActiveSlider);
 		Actions action = new Actions(driver);
 		action.moveToElement(homepageActiveSlider).build().perform();
 		action.moveToElement(sliderPreviousButton).build().perform();
-		Waits.waitForSomeSeconds(2000);
+		//action.clickAndHold(sliderPreviousButton).build().perform();
+		Waits.waitForSomeSeconds(3000);
 		return sliderPreviousButton.getCssValue("color");
 	}
 
@@ -476,6 +477,63 @@ public class KweekweekHomepage {
 	public KweekweekHomepage selectCategoryToBrowse(String category) {
 		WebElement discoverEvents = driver.findElement(By.xpath("//div[@class='categ-item submenu']/ul//a[contains(text(), '" + category + "')]"));
 		discoverEvents.click();
+		return this;
+	}
+
+	@FindBy (css = ".col-sm-4.col-xs-6>figure>figcaption>p>a")
+	private WebElement firstCategory;
+
+	public String[] getCategoryColorAtHover() {
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.PAGE_DOWN);
+		String initialColor = firstCategory.getCssValue("background-color");
+		action.moveToElement(firstCategory).build().perform();
+		Waits.waitForSomeSeconds(1000);
+		String afterHoverColor = firstCategory.getCssValue("background-color");
+		String arrColor[] = {initialColor, afterHoverColor};
+		return arrColor;
+	}
+
+	@FindBy (css = ".btn.btn-default.border-white.large")
+	private WebElement howItWorksButton;
+
+	public void clickHowItWorksButton() {
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.PAGE_DOWN, Keys.PAGE_DOWN, Keys.PAGE_DOWN);
+		Waits.waitForElementToBeClickable(driver, howItWorksButton);
+		action.click(howItWorksButton).build().perform();
+		Waits.waitForSomeSeconds(3500);
+	}
+
+	public List getDownloadAppsExternalLinks(WebDriver driver){
+		List<WebElement> elementList = new ArrayList();
+		elementList = driver.findElements(By.xpath("//div[@class='download-links']//a"));
+		//elementList.addAll(driver.findElements(By.tagName("img")));
+		List<WebElement> finalList = new ArrayList();
+		for (WebElement element : elementList)
+		{
+			if (element.getAttribute("href") != null){
+				finalList.add(element);
+			}
+		}
+		return finalList;
+	}
+
+	@FindBy (css = "#query_text")
+	private WebElement searchField;
+
+	public KweekweekHomepage clickSearchField(){
+		Waits.waitForElementToBeClickable(driver, searchField);
+		searchField.click();
+		return this;
+	}
+
+	@FindBy (xpath = "//div[@id='query_area']/div/ul/li/a")
+	private WebElement searchFieldAllEvents;
+
+	public KweekweekHomepage clickSearchFieldAllEvents(){
+		Waits.waitForElementToBeClickable(driver, searchFieldAllEvents);
+		searchFieldAllEvents.click();
 		return this;
 	}
 }

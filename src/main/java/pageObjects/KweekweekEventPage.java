@@ -1,9 +1,10 @@
 package pageObjects;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-
 import utils.Waits;
 
 public class KweekweekEventPage {
@@ -65,4 +66,28 @@ public class KweekweekEventPage {
 		hostButton.click();	
 		return this;
 	}
+
+	@FindBy (xpath="//div[@class='col-xs-12 event-description-row event-category']/div/span[@class='icon-label']/a")
+	private WebElement eventCategory;
+
+	public String getEventCategory() {
+		Waits.waitForElementToBeClickable(driver, eventCategory);
+		return eventCategory.getText();
+	}
+
+	@FindBy (xpath="//p[@class='vector icon-categories-tag']")
+	private WebElement recommendationEventCategory;
+
+	@FindBy (xpath="//div[@class='col-lg-3 col-md-4 col-sm-6 col-xs-12 event-item show_all_tabs']")
+	private WebElement recommendationEvent;
+
+	public String getRecommendationEventCategory() {
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.PAGE_DOWN);
+		action.moveToElement(recommendationEvent).build().perform();
+		Waits.waitForSomeSeconds(2000);
+		return recommendationEventCategory.getText();
+	}
+
+
 }
