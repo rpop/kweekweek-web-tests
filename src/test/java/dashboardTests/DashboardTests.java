@@ -48,6 +48,7 @@ public class DashboardTests extends BaseLoginTest{
 		List<WebElement> list = kweekweekDashboard.getSettingsMenuOptions();
 		for (WebElement option : list){
 			kweekweekDashboard.clickOptionOnSettingsMenu(option);
+			Waits.waitForSomeSeconds(1000);
 			String href = UtilityActions.getAttributeValueOfElement(option, "href");
 			Assert.assertTrue(driver.getCurrentUrl().contains(href));
 		}
