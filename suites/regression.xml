@@ -1,13 +1,23 @@
-<suite>
-    <test>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
+<suite name="Regresion">
+
+    <test name="Homepage tests">
+        <packages>
+            <package name="homepageTests"/>
+        </packages>
     </test>
 
+    <!--<test name="Search tests">-->
+        <!--<packages>-->
+            <!--<package name="searchTests"/>-->
+        <!--</packages>-->
+    <!--</test>-->
 
-    <test>
-
-
-    </test>
-
+    <!--<test name="Login tests">-->
+        <!--<packages>-->
+            <!--<package name="loginTest"/>-->
+        <!--</packages>-->
+    <!--</test>-->
 
 </suite>
