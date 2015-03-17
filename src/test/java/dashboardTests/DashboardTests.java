@@ -3,25 +3,50 @@ package dashboardTests;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import env.TestAppEnv;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import pageObjects.KweekweekDashboardPage;
+import pageObjects.KweekweekHeader;
 import pageObjects.KweekweekHomepage;
 import pageObjects.KweekweekProfilePage;
+import testData.Users;
+import utils.Properties;
 import utils.StringModifiers;
 import utils.UtilityActions;
 import utils.Waits;
-
 import loginTest.KweekweekLoginTest;
-import base.BaseLoginTest;
+
 import base.BaseTest;
 
-public class DashboardTests extends BaseLoginTest{
+public class DashboardTests extends BaseTest{
+	
+	
+	
+	@Override@BeforeMethod
+	public void setup(){
+		super.setup();
+		loginBeforeTest();
+		
+   }
+	public void loginBeforeTest(){
+		KweekweekHeader kweekweekHeader = PageFactory.initElements(driver, KweekweekHeader.class);
+		KweekweekHomepage kweekweekHomepage = PageFactory.initElements(driver, KweekweekHomepage.class);
+		kweekweekHeader.clickLoginButtonFromHeader();
+		kweekweekHomepage.setLoginUsername(Users.NORMALUSER)
+		                 .setLoginPassword(Users.NORMALPASSWORD)
+		                 .clickLoginButtonOnLoginPopup();
+		}
 
 	@Test
 	public void redirectToProfileTest(){
