@@ -43,6 +43,9 @@ public class UtilityActions {
 		
 	}
 	
+	public static String  getAttributeValueOfElement (WebElement element, String attribute){
+		return element.getAttribute(attribute);
+	}
 	
 	
 }
