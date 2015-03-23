@@ -45,13 +45,13 @@ public class HomepagePozitiveTest extends BaseTest {
         assertThat(providerName, equalTo(kweekweekHomePage.getEventProviderTitle()));
     }
 
-    @Test
-    public void getSliderPreviousButtonColorAtHoverTest(){
-        KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
-        String color = kweekweekHomePage.getSliderPreviousButtonColorAtHover();
-        System.out.println(color);
-        assertThat(color, equalTo("rgba(253, 203, 5, 1)")); //todo nu stie culoarea potrivita
-    }
+//    @Test
+//    public void getSliderPreviousButtonColorAtHoverTest(){
+//        KweekweekHomepage kweekweekHomePage = PageFactory.initElements(driver, KweekweekHomepage.class);
+//        String color = kweekweekHomePage.getSliderPreviousButtonColorAtHover();
+//        System.out.println(color);
+//        assertThat(color, equalTo("rgba(253, 203, 5, 1)")); //todo nu stie culoarea potrivita
+//    }
 
     @DataProvider
     public Object[][] discoverEvents(){

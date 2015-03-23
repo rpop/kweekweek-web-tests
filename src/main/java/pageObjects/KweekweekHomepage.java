@@ -508,7 +508,6 @@ public class KweekweekHomepage {
 	public List getDownloadAppsExternalLinks(WebDriver driver){
 		List<WebElement> elementList = new ArrayList();
 		elementList = driver.findElements(By.xpath("//div[@class='download-links']//a"));
-		//elementList.addAll(driver.findElements(By.tagName("img")));
 		List<WebElement> finalList = new ArrayList();
 		for (WebElement element : elementList)
 		{

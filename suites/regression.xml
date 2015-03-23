@@ -8,16 +8,28 @@
         </packages>
     </test>
 
-    <!--<test name="Search tests">-->
-        <!--<packages>-->
-            <!--<package name="searchTests"/>-->
-        <!--</packages>-->
-    <!--</test>-->
+    <test name="Signup tests">
+        <packages>
+            <package name="signupTest"/>
+        </packages>
+    </test>
 
-    <!--<test name="Login tests">-->
-        <!--<packages>-->
-            <!--<package name="loginTest"/>-->
-        <!--</packages>-->
-    <!--</test>-->
+    <test name="Login tests">
+        <packages>
+            <package name="loginTest"/>
+        </packages>
+    </test>
+
+    <test name="Browsepage tests">
+        <packages>
+            <package name="browsePage"/>
+        </packages>
+    </test>
+
+    <test name="search tests">
+        <packages>
+            <package name="searchTests"/>
+        </packages>
+    </test>
 
 </suite>

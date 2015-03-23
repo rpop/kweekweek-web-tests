@@ -44,5 +44,4 @@ public class Users {
 	public static String getFacebookPassword(){
 		return FACEBOOKPASSWORD;
 	}
-
 }

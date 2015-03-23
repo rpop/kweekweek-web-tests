@@ -123,6 +123,6 @@ public class SignupPozitiveTest extends BaseTest{
         //Waits.waitForSomeSeconds(800);
         kweekweekHeader.clickSignupButtonOnHeader();
         //Waits.waitForSomeSeconds(2000);
-        kweekweekHomePage.selectDateOfBirth("25", "Apr", "1980");
+        kweekweekHomePage.selectDateOfBirth("25", "April", "1980");
     }
 }
