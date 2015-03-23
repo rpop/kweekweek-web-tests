@@ -43,6 +43,11 @@ public class KweekweekEventPage {
 		return this;
 	}
 
+	public String getWishlistButtonStatus(){
+		Waits.waitForElementToBeClickable(driver, wishlistButtonOnEventPage);
+		return wishlistButtonOnEventPage.getText();
+	}
+
 	public KweekweekEventPage clickAttendeesHeader() {
 		Waits.waitForElementToBeClickable(driver, attendeesHeader);
 		attendeesHeader.click();
@@ -87,6 +92,14 @@ public class KweekweekEventPage {
 		action.moveToElement(recommendationEvent).build().perform();
 		Waits.waitForSomeSeconds(2000);
 		return recommendationEventCategory.getText();
+	}
+
+	@FindBy (xpath="//div[@class='col-xs-12 event-description-row event-location']/div/span[@class='icon-label']/a")
+	private WebElement eventLocation;
+
+	public String getEventlocation() {
+		Waits.waitForElementToBeClickable(driver, eventLocation);
+		return eventLocation.getText();
 	}
 
 
