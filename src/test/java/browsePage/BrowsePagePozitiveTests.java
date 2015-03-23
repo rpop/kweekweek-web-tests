@@ -272,6 +272,6 @@ public class BrowsePagePozitiveTests extends BaseTest{
                 .clickFacebookLoginButton();
         Waits.waitForVisibilityOfElement(driver, kweekweekHomepage.alertContainer);
         Assert.assertTrue(driver.getPageSource().contains("Logged in successfully"));
-        
+
     }
 }
